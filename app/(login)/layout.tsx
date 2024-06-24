@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  weight: ["100", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
-  title: "Login - Delivery APP",
+  title: "Acesso - Delivery APP",
   description: "Área de login do usuário ou criação da conta de acesso",
 };
 
@@ -14,7 +18,7 @@ export default function LoginLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-Br">
+    <html lang="pt-Br" className={poppins.variable}>
       <body>{children}</body>
     </html>
   );
