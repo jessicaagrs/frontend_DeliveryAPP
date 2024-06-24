@@ -31,6 +31,9 @@ export const theme = {
 		buttonGreen: "#2DB6A3",
 		buttonPeach: "#DFB497",
 		textWhite: "#FFFFFF",
+    textInputGray: "#666161",
+    textGray: "#464444",
+    textLink:"#2D2626"
 	},
 };
 

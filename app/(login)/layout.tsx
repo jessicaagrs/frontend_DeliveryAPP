@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import DefaultProviderLogin from "../contexts/DefaultProviderLogin";
 
 const poppins = Poppins({
   weight: ["100", "300", "400", "500", "600", "700"],
@@ -19,7 +20,9 @@ export default function LoginLayout({
 }>) {
   return (
     <html lang="pt-Br" className={poppins.variable}>
-      <body>{children}</body>
+      <DefaultProviderLogin>
+        <body>{children}</body>
+      </DefaultProviderLogin>
     </html>
   );
 }
