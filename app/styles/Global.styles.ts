@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -24,30 +24,28 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const theme = {
-  colors: {
-    backgroundGreen: '#22C7A9',
-    backgroundGray: '#E5E5E5',
-    buttonGray: '#DADADA',
-    buttonGreen: '#2DB6A3',
-    buttonPeach: '#DFB497',
-    textWhite: '#FFFFFF'
-  },
+	colors: {
+		backgroundGreen: "#22C7A9",
+		backgroundGray: "#E5E5E5",
+		buttonGray: "#DADADA",
+		buttonGreen: "#2DB6A3",
+		buttonPeach: "#DFB497",
+		textWhite: "#FFFFFF",
+	},
 };
 
 export const customThemeLogin = {
-  ...theme,
-  colors: {
-    ...theme.colors,
-    background: '#22C7A9',
-  },
+	...theme,
+	colors: {
+		...theme.colors,
+		background: "#22C7A9",
+	},
 };
 
 export const customThemeSystem = {
-  ...theme,
-  colors: {
-    ...theme.colors,
-    background: '#E5E5E5',
-  },
+	...theme,
+	colors: {
+		...theme.colors,
+		background: "#E5E5E5",
+	},
 };
-
-
