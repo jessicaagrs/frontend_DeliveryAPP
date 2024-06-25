@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerForm = styled.div`
+export const ContainerForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -77,7 +77,7 @@ export const ButtonEyePassword = styled.button`
 	width: 24px;
 	height: 24px;
 	z-index: 1;
-	bottom: 40%;
+	bottom: 45%;
 	right: 10%;
 	transform: translateY(50%);
 

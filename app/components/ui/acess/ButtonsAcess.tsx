@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { ButtonsContainer } from "./ButtonAcess.styles";
 
 export const ButtonsAcess = () => {
-    const { setTypeAcess, typeAcess } = useTypeAcess();
+    const { setTypeAcess } = useTypeAcess();
     const route = useRouter();
 
     const handleClick = (type: TypeAcess, event: React.MouseEvent<HTMLButtonElement>) => {
