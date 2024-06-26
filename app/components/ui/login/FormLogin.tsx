@@ -1,7 +1,13 @@
-import { Messages } from "@/app/enum/enums";
+import loginSession from "@/app/api/login/loginApi";
+import { KeysStorage, Messages } from "@/app/enum/enums";
+import { useAlertModal } from "@/app/hooks/useAlertModal";
+import { useLocalStorage } from "@/app/hooks/useLocalStorage";
+import useTypeAcess from "@/app/hooks/useTypeAcess";
+import { LoginRequest, LoginResponse } from "@/app/types/loginType";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import AlertModal from "../modal/AlertModal";
 import { BoxOptions, BoxPassword, ButtonEyePassword, ButtonLogin, ButtonOptions, ContainerForm, Input } from "./FormLogin.styles";
 
 export const FormLogin = () => {
@@ -9,10 +15,12 @@ export const FormLogin = () => {
     const inputEmailRef = useRef<HTMLInputElement>(null);
     const buttonEyePasswordRef = useRef<HTMLButtonElement>(null);
     const [viewEye, setViewEye] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
+    const { ModalComponent, showModal } = useAlertModal();
+    const { typeAcess } = useTypeAcess();
+    const { setLocalStorage } = useLocalStorage();
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClickViewPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         setViewEye(prevViewEye => !prevViewEye);
     };
@@ -22,13 +30,37 @@ export const FormLogin = () => {
         router.push("/register");
     };
 
-    const handleClickModal = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClickForgotPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setIsOpen(prevIsOpen => !prevIsOpen);
+        showModal(Messages.FUNCTIONALITY_NOT_IMPLEMENTED);
     };
 
-    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const mutation = useMutation<AxiosResponse<LoginResponse>, AxiosError, LoginRequest>({
+        mutationFn: loginSession,
+        onError: (error) => {
+            showModal(error.message);
+        },
+        onSuccess: (data) => {
+            setLocalStorage(KeysStorage.USER, [data.data]);
+            router.push("/home");
+        }
+    });
+
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+
+        if (!inputEmailRef.current?.value || !inputPasswordRef.current?.value) {
+            showModal(Messages.INVALID_LOGIN_FIELDS);
+            return;
+        }
+
+        const dataUser: LoginRequest = {
+            email: inputEmailRef.current?.value,
+            password: inputPasswordRef.current?.value,
+            typeLogin: typeAcess,
+        };
+
+        mutation.mutate(dataUser);
     };
 
     useEffect(() => {
@@ -48,14 +80,14 @@ export const FormLogin = () => {
             <Input type="email" placeholder="Email" ref={inputEmailRef} />
             <BoxPassword>
                 <Input type="password" placeholder="Senha" ref={inputPasswordRef} />
-                <ButtonEyePassword ref={buttonEyePasswordRef} onClick={(event) => handleClick(event)} />
+                <ButtonEyePassword ref={buttonEyePasswordRef} onClick={(event) => handleClickViewPassword(event)} />
             </BoxPassword>
             <BoxOptions>
                 <ButtonOptions onClick={(event) => handleClickRedirectRegister(event)}>Cadastro</ButtonOptions>
-                <ButtonOptions dark onClick={(event) => handleClickModal(event)}>Esqueci a senha</ButtonOptions>
+                <ButtonOptions dark onClick={(event) => handleClickForgotPassword(event)}>Esqueci a senha</ButtonOptions>
             </BoxOptions>
             <ButtonLogin onClick={(event) => handleSubmit(event)}>Entrar</ButtonLogin>
-            <AlertModal isOpen={isOpen} setIsOpen={setIsOpen} message={Messages.FUNCTIONALITY_NOT_IMPLEMENTED} />
+            <ModalComponent />
         </ContainerForm>
     );
 };
