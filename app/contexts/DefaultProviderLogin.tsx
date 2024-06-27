@@ -10,7 +10,7 @@ export default function DefaultProviderLogin(props: DefaultProviderProps) {
 
     return (
         <QueryClientProvider client={queryClient}>
-                {props.children}
+            {props.children}
         </QueryClientProvider>
     );
 }

@@ -1,4 +1,4 @@
-import loginSession from "@/app/api/login/loginApi";
+import loginSession from "@/app/data/login/loginApi";
 import { KeysStorage, Messages } from "@/app/enum/enums";
 import { useAlertModal } from "@/app/hooks/useAlertModal";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";

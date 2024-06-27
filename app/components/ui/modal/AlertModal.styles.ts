@@ -44,4 +44,8 @@ export const Modal = styled.div`
 		font-weight: var(--font-weight-regular);
 		font-size: 18px;
 	}
+
+	@media (min-width: 320px) and (max-width: 660px) {
+		width: 80%;
+	}
 `;
