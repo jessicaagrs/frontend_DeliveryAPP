@@ -2,7 +2,6 @@ import loginSession from "@/app/api/login/loginApi";
 import { KeysStorage, Messages } from "@/app/enum/enums";
 import { useAlertModal } from "@/app/hooks/useAlertModal";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
-import useTypeAcess from "@/app/hooks/useTypeAcess";
 import { LoginRequest, LoginResponse } from "@/app/types/loginType";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
@@ -17,8 +16,7 @@ export const FormLogin = () => {
     const [viewEye, setViewEye] = useState(false);
     const router = useRouter();
     const { ModalComponent, showModal } = useAlertModal();
-    const { typeAcess } = useTypeAcess();
-    const { setLocalStorage } = useLocalStorage();
+    const { setLocalStorage, getLocalStorage } = useLocalStorage();
 
     const handleClickViewPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -51,6 +49,13 @@ export const FormLogin = () => {
 
         if (!inputEmailRef.current?.value || !inputPasswordRef.current?.value) {
             showModal(Messages.INVALID_LOGIN_FIELDS);
+            return;
+        }
+
+        const typeAcess = getLocalStorage<string>(KeysStorage.TYPEACESS);
+
+        if (!typeAcess) {
+            showModal(Messages.UNEXPECTED_ERROR);
             return;
         }
 

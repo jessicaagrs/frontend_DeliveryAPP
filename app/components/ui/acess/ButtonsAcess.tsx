@@ -1,16 +1,15 @@
 'use client';
-import { TypeAcess } from "@/app/enum/enums";
-import useTypeAcess from "@/app/hooks/useTypeAcess";
+import { KeysStorage, TypeAcess } from "@/app/enum/enums";
+import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { useRouter } from "next/navigation";
 import { ButtonsContainer } from "./ButtonAcess.styles";
 
 export const ButtonsAcess = () => {
-    const { setTypeAcess } = useTypeAcess();
     const route = useRouter();
+    const { setLocalStorage } = useLocalStorage();
 
     const handleClick = (type: TypeAcess, event: React.MouseEvent<HTMLButtonElement>) => {
-        setTypeAcess(type);
-
+        setLocalStorage(KeysStorage.TYPEACESS, type);
         route.push('/login');
     };
 

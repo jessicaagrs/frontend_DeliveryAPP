@@ -7,6 +7,7 @@ export enum KeysStorage {
 	USER = "user",
 	DELIVERY = "delivery",
 	STORE = "store",
+	TYPEACESS = "typeAcess",
 }
 
 export enum Messages {
