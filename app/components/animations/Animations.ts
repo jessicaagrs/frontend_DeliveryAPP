@@ -46,3 +46,25 @@ export const TitleAnimation = keyframes`
 	transform: translateX(0px);
   }
 `;
+
+export const RotateLeft = keyframes`
+    0% {
+			transform:rotate(0);
+			transform-origin:left;
+		}
+		100% {
+			transform:rotate(360deg);
+			transform-origin:left;
+		}
+`;
+
+export const RotateRight= keyframes`
+    0% {
+			transform:rotate(0);
+			transform-origin:right;
+		}
+		100% {
+			transform:rotate(360deg);
+			transform-origin:right;
+		}
+`;

@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import Loading from "../loading/Loading";
 import { BoxOptions, BoxPassword, ButtonEyePassword, ButtonLogin, ButtonOptions, ContainerForm, Input } from "./FormLogin.styles";
 
 export const FormLogin = () => {
@@ -41,7 +42,7 @@ export const FormLogin = () => {
         onSuccess: (data) => {
             setLocalStorage(KeysStorage.USER, [data.data]);
             router.push("/home");
-        }
+        },
     });
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -79,6 +80,12 @@ export const FormLogin = () => {
             }
         }
     }, [viewEye]);
+
+    if (mutation.isPending) {
+        return (
+            <Loading />
+        );
+    }
 
     return (
         <ContainerForm>
