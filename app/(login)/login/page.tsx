@@ -1,6 +1,6 @@
 'use client';
-import WelcomeContainer from "@/app/components/ui/login/WelcomeContainer";
-import { GlobalStyle, customThemeLogin } from "@/app/styles/Global.styles";
+import WelcomeContainer from "@/components/ui/login/WelcomeContainer";
+import { GlobalStyle, customThemeLogin } from "@/styles/Global.styles";
 import { ThemeProvider } from "styled-components";
 
 export default function Login() {

@@ -1,8 +1,8 @@
-import loginSession from "@/app/data/login/loginApi";
-import { KeysStorage, Messages } from "@/app/enum/enums";
-import { useAlertModal } from "@/app/hooks/useAlertModal";
-import { useLocalStorage } from "@/app/hooks/useLocalStorage";
-import { LoginRequest, LoginResponse } from "@/app/types/loginType";
+import loginSession from "@/data/login/loginApi";
+import { KeysStorage, Messages } from "@/enum/enums";
+import { useAlertModal } from "@/hooks/useAlertModal";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { LoginRequest, LoginResponse } from "@/types/loginType";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";

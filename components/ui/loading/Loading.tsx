@@ -1,13 +1,5 @@
 import { BoxItemsLoading, ContainerLoading } from "./Loading.styles";
 
-interface Loading {
-
-};
-
-type LoadingProps = {
-
-};
-
 export default function Loading() {
     return (
         <ContainerLoading>
@@ -17,5 +9,5 @@ export default function Loading() {
                 <div></div>
             </BoxItemsLoading>
         </ContainerLoading>
-    )
+    );
 };

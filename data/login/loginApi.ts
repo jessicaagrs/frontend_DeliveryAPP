@@ -1,6 +1,6 @@
-import { Messages } from "@/app/enum/enums";
-import { ErrorApi } from "@/app/types/errorApiType";
-import { LoginRequest, LoginResponse } from "@/app/types/loginType";
+import { Messages } from "@/enum/enums";
+import { ErrorApi } from "@/types/errorApiType";
+import { LoginRequest, LoginResponse } from "@/types/loginType";
 import axios, { AxiosResponse } from "axios";
 
 const instance = axios.create({

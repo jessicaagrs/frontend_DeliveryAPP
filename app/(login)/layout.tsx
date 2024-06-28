@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import DefaultProviderLogin from "../contexts/DefaultProviderLogin";
+import DefaultProviderLogin from "../../contexts/DefaultProviderLogin";
 
 const poppins = Poppins({
   weight: ["100", "300", "400", "500", "600", "700"],

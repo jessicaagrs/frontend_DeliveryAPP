@@ -1,6 +1,6 @@
 'use client';
-import { KeysStorage, TypeAcess } from "@/app/enum/enums";
-import { useLocalStorage } from "@/app/hooks/useLocalStorage";
+import { KeysStorage, TypeAcess } from "@/enum/enums";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useRouter } from "next/navigation";
 import { ButtonsContainer } from "./ButtonAcess.styles";
 
