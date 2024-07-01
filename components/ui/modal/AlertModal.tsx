@@ -2,18 +2,18 @@ import { Container, Modal } from "./AlertModal.styles";
 
 interface AlertModal {
     isOpen: boolean,
-    setIsOpen: (isOpen: boolean) => void,
+    closeModal: () => void,
     message: string,
 };
 
-export default function AlertModal({ isOpen, setIsOpen, message }: AlertModal) {
+export default function AlertModal({ isOpen, closeModal, message }: AlertModal) {
     if (isOpen) {
         return (
             <Container>
                 <Modal>
                     <h1>Aviso</h1>
                     <p>{message}</p>
-                    <button onClick={() => setIsOpen(!isOpen)}>Fechar</button>
+                    <button onClick={closeModal}>Fechar</button>
                 </Modal>
             </Container>
         );

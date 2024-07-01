@@ -16,7 +16,7 @@ export function useAlertModal() {
     };
 
     const ModalComponent = () => (
-        <AlertModal isOpen={isOpen} setIsOpen={setIsOpen} message={message} />
+        <AlertModal isOpen={isOpen} closeModal={closeModal} message={message} />
     );
 
     return {
