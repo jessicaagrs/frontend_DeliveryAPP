@@ -1,7 +1,7 @@
-import loginSession from "@/data/login/loginApi";
 import { KeysStorage, Messages } from "@/enum/enums";
 import { useAlertModal } from "@/hooks/useAlertModal";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import loginSession from "@/service/login/loginApi";
 import { LoginRequest, LoginResponse } from "@/types/loginType";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";

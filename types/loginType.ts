@@ -8,7 +8,7 @@ export interface LoginResponse {
 }
 
 export interface LoginRequest {
-	email: string | undefined;
-	password: string | undefined;
-	typeLogin: string | undefined;
+	email?: string;
+	password?: string;
+	typeLogin?: string;
 }

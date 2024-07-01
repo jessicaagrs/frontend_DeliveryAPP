@@ -24,7 +24,7 @@ export const Input = styled.input`
 	font-weight: var(--font-weight-medium);
 	color: ${(props) => props.theme.colors.textInputGray};
 	outline: none;
-	background-image: ${(props) => (props.type === "email" ? 'url("/login-email.svg")' : 'url("/login-password.svg")')};
+	background-image: ${(props) => (props.type === "email" ? 'url("/input-email.png")' : 'url("/input-password.png")')};
 	background-position: left 3% bottom 45%;
 	background-repeat: no-repeat;
 	background-size: 24px;

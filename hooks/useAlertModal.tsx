@@ -20,8 +20,6 @@ export function useAlertModal() {
     );
 
     return {
-        isOpen,
-        message,
         showModal,
         closeModal,
         ModalComponent,
