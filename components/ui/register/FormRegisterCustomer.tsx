@@ -2,13 +2,12 @@ import { Messages } from "@/enum/enums";
 import { useAlertModal } from "@/hooks/useAlertModal";
 import createCustomer from "@/service/customer/customerApi";
 import { CustomerRequest } from "@/types/customerType";
+import { extractNumbers } from "@/utils/formatter";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
-import Loading from "../loading/Loading";
-import { ButtonSubmit, Form, FormItems, Input } from "./FormRegisterCustomer.styles";
-import { extractNumbers } from "@/utils/formatter";
+import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, Input } from "./FormRegister.styles";
 
 export default function FormRegisterCustomer() {
     const { ModalComponent, showModal } = useAlertModal();
@@ -19,13 +18,17 @@ export default function FormRegisterCustomer() {
     const inputConfirmPasswordRef = useRef<HTMLInputElement>(null);
     const inputPhoneRef = useRef<HTMLInputElement>(null);
 
+    const setPreviewPageLogin = () => {
+        router.push("/login");
+    };
+
     const mutation = useMutation<AxiosResponse<string>, AxiosError, CustomerRequest>({
         mutationFn: createCustomer,
         onError: (error) => {
             showModal(error.message);
         },
         onSuccess: (data) => {
-            setTimeout(() => router.push("/login"), 1000);
+            setPreviewPageLogin();
         },
     });
 
@@ -51,14 +54,11 @@ export default function FormRegisterCustomer() {
         mutation.mutate(customer);
     };
 
-    if (mutation.isPending) {
-        return (
-            <Loading />
-        );
-    }
-
     return (
         <>
+            <ContainerButtonPreview>
+                <ButtonPreview onClick={setPreviewPageLogin}>Login</ButtonPreview>
+            </ContainerButtonPreview>
             <Form>
                 <h1>Cadastro de Cliente</h1>
                 <FormItems>
@@ -68,7 +68,9 @@ export default function FormRegisterCustomer() {
                     <Input type="password" placeholder="Confirme a senha" ref={inputConfirmPasswordRef} />
                     <Input type="tel" placeholder="Telefone" ref={inputPhoneRef} />
                 </FormItems>
-                <ButtonSubmit onClick={(event) => handleSubmit(event)}>Enviar</ButtonSubmit>
+                <ButtonSubmit onClick={(event) => handleSubmit(event)}>
+                    {mutation.isPending ? "Enviando..." : "Entrar"}
+                </ButtonSubmit>
             </Form>
             <ModalComponent />
         </>

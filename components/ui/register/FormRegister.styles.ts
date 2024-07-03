@@ -5,23 +5,23 @@ export const Form = styled.form`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-    height: 100vh;
-    gap: 30px;
-    background-image: url("/background-form-customer.png");
-    background-position: top;
-    background-size: auto;
+	height: 100vh;
+	gap: 30px;
+	background-image: url("/background-form-customer.png");
+	background-position: top;
+	background-size: auto;
 
-    h1 {
-        color: ${(props) => props.theme.colors.textWhite};
-        font-weight: var(--font-weight-normal);
-        font-size: 35px;
-    }
+	h1 {
+		color: ${(props) => props.theme.colors.textWhite};
+		font-weight: var(--font-weight-normal);
+		font-size: 35px;
+	}
 `;
 
 export const FormItems = styled.div`
 	display: flex;
 	flex-direction: column;
-    gap: 20px;
+	gap: 20px;
 `;
 
 export const Input = styled.input`
@@ -45,7 +45,7 @@ export const Input = styled.input`
 			case "text":
 				return 'url("/input-text.png")';
 			default:
-				return 'none';
+				return "none";
 		}
 	}};
 	background-position: left 3% bottom 45%;
@@ -76,5 +76,23 @@ export const ButtonSubmit = styled.button`
 
 	@media (min-width: 320px) and (max-width: 410px) {
 		width: 320px;
+	}
+`;
+
+export const ContainerButtonPreview = styled.div`
+	display: flex;
+	margin: 1rem;
+`;
+
+export const ButtonPreview = styled.button`
+	background-color: transparent;
+	border: none;
+	color: ${(props) => props.theme.colors.textWhite};
+	font-weight: var(--font-weight-normal);
+	font-size: 18px;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
 	}
 `;

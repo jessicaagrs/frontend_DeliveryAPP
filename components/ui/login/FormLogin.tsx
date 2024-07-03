@@ -7,7 +7,6 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import Loading from "../loading/Loading";
 import { BoxOptions, BoxPassword, ButtonEyePassword, ButtonLogin, ButtonOptions, ContainerForm, Input } from "./FormLogin.styles";
 
 export const FormLogin = () => {
@@ -81,12 +80,6 @@ export const FormLogin = () => {
         }
     }, [viewEye]);
 
-    if (mutation.isPending) {
-        return (
-            <Loading />
-        );
-    }
-
     return (
         <ContainerForm>
             <Input type="email" placeholder="Email" ref={inputEmailRef} />
@@ -98,7 +91,9 @@ export const FormLogin = () => {
                 <ButtonOptions onClick={(event) => handleClickRedirectRegister(event)}>Cadastro</ButtonOptions>
                 <ButtonOptions dark onClick={(event) => handleClickForgotPassword(event)}>Esqueci a senha</ButtonOptions>
             </BoxOptions>
-            <ButtonLogin onClick={(event) => handleSubmit(event)}>Entrar</ButtonLogin>
+            <ButtonLogin onClick={(event) => handleSubmit(event)}>
+                {mutation.isPending ? "Enviando..." : "Entrar"}
+            </ButtonLogin>
             <ModalComponent />
         </ContainerForm>
     );
