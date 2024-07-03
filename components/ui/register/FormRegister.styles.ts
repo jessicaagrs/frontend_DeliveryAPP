@@ -37,13 +37,13 @@ export const Input = styled.input`
 	background-image: ${(props) => {
 		switch (props.type) {
 			case "email":
-				return 'url("/input-email.png")';
+				return 'url("/input-email.svg")';
 			case "password":
-				return 'url("/input-password.png")';
+				return 'url("/input-password.svg")';
 			case "tel":
-				return 'url("/input-phone.png")';
+				return 'url("/input-phone.svg")';
 			case "text":
-				return 'url("/input-text.png")';
+				return 'url("/input-text.svg")';
 			default:
 				return "none";
 		}
