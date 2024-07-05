@@ -11,6 +11,10 @@ export const Form = styled.form`
 	background-position: right;
 	background-repeat: no-repeat;
 	background-size: 600px;
+
+	@media (min-width: 320px) and (max-width: 1280px) {
+		background-image: none;
+	}
 `;
 
 export const FormText = styled.div`
@@ -33,11 +37,24 @@ export const FormText = styled.div`
 		width: 40%;
 		text-align: center;
 	}
+
+	@media (min-width: 320px) and (max-width: 800px) {
+		h1 {
+			font-size: 25px;
+		}
+
+		p {
+			font-size: 14px;
+			text-align: justify;
+			width: 90%;
+		}
+	}
 `;
 
 export const FormItems = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: 20px;
 `;
 
@@ -73,6 +90,11 @@ export const Input = styled.input`
 	&:focus {
 		outline: 2px solid ${(props) => props.theme.colors.buttonPeach};
 	}
+
+	@media (min-width: 320px) and (max-width: 415px) {
+		width: 330px;
+		height: 50px;
+	}
 `;
 
 export const ButtonSubmit = styled.button`
@@ -92,7 +114,7 @@ export const ButtonSubmit = styled.button`
 	}
 
 	@media (min-width: 320px) and (max-width: 410px) {
-		width: 320px;
+		width: 230px;
 	}
 `;
 

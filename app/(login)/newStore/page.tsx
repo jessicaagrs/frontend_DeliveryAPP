@@ -1,15 +1,9 @@
-interface NewStore {
-
-};
-
-type NewStoreProps = {
-
-};
-
+'use client';
+import FormNewStore from "@/components/ui/newStore/FormNewStore";
 export default function NewStore() {
     return (
         <main>
-            AQUI
+            <FormNewStore />
         </main>
-    )
+    );
 };

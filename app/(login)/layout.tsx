@@ -19,7 +19,7 @@ export default function LoginLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-Br" className={poppins.variable}>
+    <html lang="pt-br" className={poppins.variable}>
       <DefaultProviderLogin>
         <body>{children}</body>
       </DefaultProviderLogin>

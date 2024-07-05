@@ -1,13 +1,14 @@
+import { Messages } from "@/enum/enums";
 import { useAlertModal } from "@/hooks/useAlertModal";
-import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input } from "./FormRegister.styles";
-import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import useStoreData from "@/hooks/useStoreData";
+import createShopman from "@/service/shopman/shopmanApi";
+import { ShopmanRequest } from "@/types/shopmanType";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
-import { Messages } from "@/enum/enums";
-import { ShopmanRequest } from "@/types/shopmanType";
-import createShopman from "@/service/shopman/shopmanApi";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
 import SelectStore from "../selectStore/SelectStore";
+import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input } from "./FormRegister.styles";
 
 export default function FormRegisterShopman() {
     const { ModalComponent, showModal } = useAlertModal();
@@ -16,6 +17,7 @@ export default function FormRegisterShopman() {
     const inputEmailRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     const inputConfirmPasswordRef = useRef<HTMLInputElement>(null);
+    const { selectedStore } = useStoreData();
 
     const setPreviewPageLogin = () => {
         router.push("/login");
@@ -47,8 +49,8 @@ export default function FormRegisterShopman() {
             name: inputNameRef.current?.value,
             email: inputEmailRef.current?.value,
             password: inputPasswordRef.current?.value,
-            role: "admin",
-            storeId: "1",
+            role: "Admin",
+            storeId: selectedStore,
         };
 
         mutation.mutate(shopman);

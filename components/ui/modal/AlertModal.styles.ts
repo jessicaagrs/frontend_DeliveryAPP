@@ -14,23 +14,23 @@ export const Modal = styled.div`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-    width: 600px;
+	width: 600px;
 	background-color: ${(props) => props.theme.colors.textWhite};
 	color: ${(props) => props.theme.colors.textGray};
-	padding: 2rem;
+	padding: 15px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-    border-radius: 12px;
+	border-radius: 12px;
 
 	h1 {
 		text-align: center;
-        font-size: 32px;
+		font-size: 32px;
 	}
 
-    p {
-        font-size: 18px;
-        text-align: justify;
+	p {
+		font-size: 18px;
+		text-align: justify;
 	}
 
 	button {
@@ -43,6 +43,7 @@ export const Modal = styled.div`
 		background-color: ${(props) => props.theme.colors.backgroundGreen};
 		font-weight: var(--font-weight-regular);
 		font-size: 18px;
+		margin-bottom: 10px;
 	}
 
 	@media (min-width: 320px) and (max-width: 660px) {

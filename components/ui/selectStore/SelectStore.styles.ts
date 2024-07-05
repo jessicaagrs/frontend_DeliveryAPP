@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContainerSelect = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: 10px;
 
 	button {
@@ -16,6 +17,12 @@ export const ContainerSelect = styled.div`
 
 	button:hover {
 		text-decoration: underline;
+	}
+
+	p {
+		color: ${(props) => props.theme.colors.textError};
+		font-size: 14px;
+		width: 100%;
 	}
 `;
 export const Select = styled.select`
@@ -36,5 +43,10 @@ export const Select = styled.select`
 
 	&:focus {
 		background-image: url("/arrow-down-select.svg");
+	}
+
+	@media (min-width: 320px) and (max-width: 415px) {
+		width: 330px;
+		height: 50px;
 	}
 `;
