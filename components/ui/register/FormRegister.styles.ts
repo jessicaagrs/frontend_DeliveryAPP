@@ -7,14 +7,31 @@ export const Form = styled.form`
 	align-items: center;
 	height: 100vh;
 	gap: 30px;
-	background-image: url("/background-form-customer.png");
-	background-position: top;
-	background-size: auto;
+	background-image: url("/background-register.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: 600px;
+`;
+
+export const FormText = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
 
 	h1 {
 		color: ${(props) => props.theme.colors.textWhite};
 		font-weight: var(--font-weight-normal);
 		font-size: 35px;
+	}
+
+	p {
+		color: ${(props) => props.theme.colors.textWhite};
+		font-weight: var(--font-weight-normal);
+		font-size: 15px;
+		width: 40%;
+		text-align: center;
 	}
 `;
 

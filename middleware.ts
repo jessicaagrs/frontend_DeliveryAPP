@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
 	const typeAcessCookie = request.cookies.has("typeAcess");
 	const url = request.nextUrl.clone();
 
-	const publicPaths = ["/login", "/register", "/"];
+	const publicPaths = ["/login", "/register", "/newStore", "/"];
 	const privatePaths = ["/home", "/pedidos"];
 
 	const staticFileExtensions = [
@@ -54,5 +54,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/login/:path*", "/register/:path*", "/home/:path*", "/pedidos/:path*", "/:path*"],
+	matcher: ["/login/:path*", "/register/:path*", "/newStore/:path*", "/home/:path*", "/pedidos/:path*", "/:path*"],
 };

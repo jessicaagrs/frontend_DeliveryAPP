@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
-import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, Input } from "./FormRegister.styles";
+import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input } from "./FormRegister.styles";
 
 export default function FormRegisterCustomer() {
     const { ModalComponent, showModal } = useAlertModal();
@@ -60,7 +60,9 @@ export default function FormRegisterCustomer() {
                 <ButtonPreview onClick={setPreviewPageLogin}>Login</ButtonPreview>
             </ContainerButtonPreview>
             <Form>
-                <h1>Cadastro de Cliente</h1>
+                <FormText>
+                    <h1>Cadastro de Cliente</h1>
+                </FormText>
                 <FormItems>
                     <Input type="text" placeholder="Nome Completo" ref={inputNameRef} />
                     <Input type="email" placeholder="Email" ref={inputEmailRef} />
@@ -69,7 +71,7 @@ export default function FormRegisterCustomer() {
                     <Input type="tel" placeholder="Telefone" ref={inputPhoneRef} />
                 </FormItems>
                 <ButtonSubmit onClick={(event) => handleSubmit(event)}>
-                    {mutation.isPending ? "Enviando..." : "Entrar"}
+                    {mutation.isPending ? "Enviando..." : "Cadastrar"}
                 </ButtonSubmit>
             </Form>
             <ModalComponent />
