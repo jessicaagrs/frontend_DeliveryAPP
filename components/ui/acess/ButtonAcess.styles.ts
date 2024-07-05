@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonsContainer = styled.div`
+const ButtonsContainer = styled.div`
 	display: flex;
 	gap: 25px;
 
@@ -28,3 +28,5 @@ export const ButtonsContainer = styled.div`
 		color: ${(props) => props.theme.colors.buttonPeach};
 	}
 `;
+
+export { ButtonsContainer };

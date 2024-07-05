@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerLogin = styled.div`
+const ContainerLogin = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -9,7 +9,7 @@ export const ContainerLogin = styled.div`
 	gap: 20px;
 `;
 
-export const WelcomeBox = styled.div`
+const WelcomeBox = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -35,3 +35,5 @@ export const WelcomeBox = styled.div`
 		}
 	}
 `;
+
+export { ContainerLogin, WelcomeBox };

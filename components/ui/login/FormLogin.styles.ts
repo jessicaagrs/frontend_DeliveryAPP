@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerForm = styled.form`
+const ContainerForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -14,7 +14,7 @@ export const ContainerForm = styled.form`
 	}
 `;
 
-export const Input = styled.input`
+const Input = styled.input`
 	appearance: none;
 	width: 350px;
 	height: 60px;
@@ -35,7 +35,7 @@ export const Input = styled.input`
 	}
 `;
 
-export const BoxOptions = styled.div`
+const BoxOptions = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
@@ -45,7 +45,7 @@ interface ButtonOptionsProps {
 	dark?: boolean;
 }
 
-export const ButtonOptions = styled.button<ButtonOptionsProps>`
+const ButtonOptions = styled.button<ButtonOptionsProps>`
 	appearance: none;
 	border: none;
 	background-color: transparent;
@@ -59,14 +59,14 @@ export const ButtonOptions = styled.button<ButtonOptionsProps>`
 	}
 `;
 
-export const BoxPassword= styled.div`
+const BoxPassword = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
 	position: relative;
 `;
 
-export const ButtonEyePassword = styled.button`
+const ButtonEyePassword = styled.button`
 	appearance: none;
 	background-color: transparent;
 	border: none;
@@ -86,7 +86,7 @@ export const ButtonEyePassword = styled.button`
 	}
 `;
 
-export const ButtonLogin = styled.button`
+const ButtonLogin = styled.button`
 	border: none;
 	cursor: pointer;
 	width: 350px;
@@ -106,3 +106,5 @@ export const ButtonLogin = styled.button`
 		width: 320px;
 	}
 `;
+
+export { BoxOptions, BoxPassword, ButtonEyePassword, ButtonLogin, ButtonOptions, ContainerForm, Input };

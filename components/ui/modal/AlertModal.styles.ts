@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -9,7 +9,7 @@ export const Container = styled.div`
 	background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const Modal = styled.div`
+const Modal = styled.div`
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -50,3 +50,5 @@ export const Modal = styled.div`
 		width: 80%;
 	}
 `;
+
+export { Container, Modal };

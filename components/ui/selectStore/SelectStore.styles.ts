@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerSelect = styled.div`
+const ContainerSelect = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -25,7 +25,7 @@ export const ContainerSelect = styled.div`
 		width: 100%;
 	}
 `;
-export const Select = styled.select`
+const Select = styled.select`
 	appearance: none;
 	width: 350px;
 	height: 60px;
@@ -50,3 +50,5 @@ export const Select = styled.select`
 		height: 50px;
 	}
 `;
+
+export { ContainerSelect, Select };

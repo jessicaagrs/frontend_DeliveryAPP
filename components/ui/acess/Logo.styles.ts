@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { TitleAnimation } from "../../animations/Animations";
 
-export const LogoContainer = styled.div`
+const LogoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -10,7 +10,7 @@ export const LogoContainer = styled.div`
 	height: 100vh;
 `;
 
-export const DataContainer = styled.div`
+const DataContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -25,16 +25,18 @@ export const DataContainer = styled.div`
 	}
 `;
 
-export const LogoTitle = styled.h1`
+const LogoTitle = styled.h1`
 	font-weight: var(--font-weight-bold);
 	font-size: 42px;
 	color: ${(props) => props.theme.colors.textWhite};
 	animation: ${TitleAnimation} 2s ease 0s 1 normal none;
 `;
 
-export const LogoPhrase = styled.p`
+const LogoPhrase = styled.p`
 	font-weight: var(--font-weight-regular);
 	font-size: 18px;
 	text-align: center;
 	color: ${(props) => props.theme.colors.textWhite};
 `;
+
+export { DataContainer, LogoContainer, LogoPhrase, LogoTitle };

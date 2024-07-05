@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
+const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -17,7 +17,7 @@ export const Form = styled.form`
 	}
 `;
 
-export const FormText = styled.div`
+const FormText = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -51,14 +51,14 @@ export const FormText = styled.div`
 	}
 `;
 
-export const FormItems = styled.div`
+const FormItems = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
 `;
 
-export const Input = styled.input`
+const Input = styled.input`
 	appearance: none;
 	width: 350px;
 	height: 60px;
@@ -97,7 +97,7 @@ export const Input = styled.input`
 	}
 `;
 
-export const ButtonSubmit = styled.button`
+const ButtonSubmit = styled.button`
 	border: none;
 	cursor: pointer;
 	width: 250px;
@@ -118,12 +118,12 @@ export const ButtonSubmit = styled.button`
 	}
 `;
 
-export const ContainerButtonPreview = styled.div`
+const ContainerButtonPreview = styled.div`
 	display: flex;
 	margin: 1rem;
 `;
 
-export const ButtonPreview = styled.button`
+const ButtonPreview = styled.button`
 	background-color: transparent;
 	border: none;
 	color: ${(props) => props.theme.colors.textWhite};
@@ -135,3 +135,5 @@ export const ButtonPreview = styled.button`
 		text-decoration: underline;
 	}
 `;
+
+export { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input };
