@@ -35,6 +35,7 @@ export const theme = {
 		textGray: "#464444",
 		textLink: "#2D2626",
 		textError: "#FF0000",
+		icons: "#666666"
 	},
 };
 
