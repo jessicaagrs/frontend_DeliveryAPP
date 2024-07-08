@@ -47,4 +47,33 @@ async function getStores(): Promise<AxiosResponse<StoreResponse[]>> {
 	}
 }
 
-export { createStore, getStores };
+async function getStoreById(id: string, token?: string): Promise<AxiosResponse<StoreResponse[]>> {
+	try {
+
+		if(!token) {
+			return Promise.reject({ statusCode: 401, error: "Token não informado", message: Messages.UNEXPECTED_ERROR });
+		}
+
+		const response: AxiosResponse<StoreResponse[]> = await instance.get(`stores/${id}`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		return response;
+	} catch (error) {
+		if (axios.isAxiosError(error)) {
+			if (error.response) {
+				const errorResponse: ErrorApi = {
+					statusCode: error.response.status,
+					error: error.response.data.error,
+					message: error.response.data.message,
+				};
+				return Promise.reject(errorResponse);
+			}
+		}
+
+		return Promise.reject({ statusCode: 500, error: "Erro Interno", message: Messages.UNEXPECTED_ERROR });
+	}
+}
+
+export { createStore, getStoreById, getStores };

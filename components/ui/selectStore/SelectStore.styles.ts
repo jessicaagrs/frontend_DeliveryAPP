@@ -25,11 +25,15 @@ const ContainerSelect = styled.div`
 		width: 100%;
 	}
 `;
-const Select = styled.select`
+
+interface SelectProps {
+	border?: boolean;
+}
+const Select = styled.select<SelectProps>`
 	appearance: none;
 	width: 350px;
 	height: 60px;
-	border: none;
+	border: ${(props) => (props.border ? `1px solid ${props.theme.colors.buttonGray}` : "none")};
 	border-radius: 15px;
 	font-size: 15px;
 	font-weight: var(--font-weight-medium);
@@ -46,7 +50,7 @@ const Select = styled.select`
 	}
 
 	@media (min-width: 320px) and (max-width: 415px) {
-		width: 330px;
+		width: 300px;
 		height: 50px;
 	}
 `;

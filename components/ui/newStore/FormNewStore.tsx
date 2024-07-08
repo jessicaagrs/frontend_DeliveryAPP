@@ -1,5 +1,5 @@
 import { Messages } from "@/enum/enums";
-import { useAlertModal } from "@/hooks/useAlertModal";
+import { useModal } from "@/hooks/useModal";
 import { createStore } from "@/service/store/storeApi";
 import { StoreRequest } from "@/types/storeType";
 import { extractNumbers } from "@/utils/formatter";
@@ -10,7 +10,7 @@ import { useRef } from "react";
 import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input } from "../register/FormRegister.styles";
 
 export default function FormNewStore() {
-    const { ModalComponent, showModal } = useAlertModal();
+    const { AlertModalComponent, showModal } = useModal();
     const inputCnpjRef = useRef<HTMLInputElement>(null);
     const inputCorporateReasonRef = useRef<HTMLInputElement>(null);
     const inputPhoneRef = useRef<HTMLInputElement>(null);
@@ -67,7 +67,7 @@ export default function FormNewStore() {
                     {mutation.isPending ? "Enviando..." : "Cadastrar"}
                 </ButtonSubmit>
             </Form>
-            <ModalComponent />
+            <AlertModalComponent />
         </>
     );
 };

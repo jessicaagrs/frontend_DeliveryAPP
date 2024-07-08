@@ -1,5 +1,5 @@
 import { Messages } from "@/enum/enums";
-import { useAlertModal } from "@/hooks/useAlertModal";
+import { useModal } from "@/hooks/useModal";
 import useStoreData from "@/hooks/useStoreData";
 import createShopman from "@/service/shopman/shopmanApi";
 import { ShopmanRequest } from "@/types/shopmanType";
@@ -11,7 +11,7 @@ import SelectStore from "../selectStore/SelectStore";
 import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input } from "./FormRegister.styles";
 
 export default function FormRegisterShopman() {
-    const { ModalComponent, showModal } = useAlertModal();
+    const { AlertModalComponent, showModal } = useModal();
     const router = useRouter();
     const inputNameRef = useRef<HTMLInputElement>(null);
     const inputEmailRef = useRef<HTMLInputElement>(null);
@@ -77,7 +77,7 @@ export default function FormRegisterShopman() {
                     {mutation.isPending ? "Enviando..." : "Cadastrar"}
                 </ButtonSubmit>
             </Form>
-            <ModalComponent />
+            <AlertModalComponent />
         </>
     );
 };

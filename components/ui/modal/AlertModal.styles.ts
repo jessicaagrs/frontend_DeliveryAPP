@@ -46,8 +46,22 @@ const Modal = styled.div`
 		margin-bottom: 10px;
 	}
 
+	button:hover {
+		color: ${(props) => props.theme.colors.backgroundGreen};
+		background-color: ${(props) => props.theme.colors.textWhite};
+		border: 1px solid ${(props) => props.theme.colors.backgroundGreen};
+	}
+
 	@media (min-width: 320px) and (max-width: 660px) {
-		width: 80%;
+		width: 90%;
+
+		h1 {
+			font-size: 24px;
+		}
+
+		button {
+			width: 210px;
+		}
 	}
 `;
 

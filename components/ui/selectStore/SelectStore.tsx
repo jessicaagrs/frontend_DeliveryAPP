@@ -2,7 +2,7 @@ import useStoreData from "@/hooks/useStoreData";
 import { getStores } from "@/service/store/storeApi";
 import { StoreResponse } from "@/types/storeType";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ContainerSelect, Select } from "./SelectStore.styles";
 
 type SelectStoreProps = {
@@ -11,6 +11,7 @@ type SelectStoreProps = {
 
 export default function SelectStore({ isStoreRegistrationPossible }: SelectStoreProps) {
     const router = useRouter();
+    const pathname = usePathname()
     const { setSelectStore } = useStoreData();
     const { isPending, isError, data, error } = useQuery({
         queryKey: ['stores'],
@@ -29,7 +30,7 @@ export default function SelectStore({ isStoreRegistrationPossible }: SelectStore
 
     return (
         <ContainerSelect>
-            <Select onChange={(event) => handleChangeStore(event)}>
+            <Select onChange={(event) => handleChangeStore(event)} border={pathname === "/home" ? true : false}>
                 <option value="0">
                     {isPending ? "Aguarde buscando as lojas..." : "Selecione uma loja"}
                 </option>
