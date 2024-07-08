@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
 	const url = request.nextUrl.clone();
 
 	const publicPaths = ["/login", "/register", "/newStore", "/"];
-	const privatePaths = ["/home", "/pedidos"];
+	const privatePaths = ["/home", "/orders"];
 
 	const staticFileExtensions = [
 		".css",
@@ -54,5 +54,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/login/:path*", "/register/:path*", "/newStore/:path*", "/home/:path*", "/pedidos/:path*", "/:path*"],
+	matcher: ["/login/:path*", "/register/:path*", "/newStore/:path*", "/home/:path*", "/orders/:path*", "/:path*"],
 };

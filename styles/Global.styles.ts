@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
 export const theme = {
 	colors: {
 		backgroundGreen: "#22C7A9",
-		backgroundGray: "#E5E5E5",
+		backgroundGray: "#F3F3F3",
 		buttonGray: "#DADADA",
 		buttonGreen: "#2DB6A3",
 		buttonPeach: "#DFB497",
@@ -35,7 +35,8 @@ export const theme = {
 		textGray: "#464444",
 		textLink: "#2D2626",
 		textError: "#FF0000",
-		icons: "#666666"
+		icons: "#666666",
+		iconSidebar: "#7C7C7A",
 	},
 };
 
@@ -51,6 +52,6 @@ export const customThemeSystem = {
 	...theme,
 	colors: {
 		...theme.colors,
-		background: "#E5E5E5",
+		background: "#F3F3F3",
 	},
 };

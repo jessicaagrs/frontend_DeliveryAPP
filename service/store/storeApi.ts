@@ -47,13 +47,8 @@ async function getStores(): Promise<AxiosResponse<StoreResponse[]>> {
 	}
 }
 
-async function getStoreById(id: string, token?: string): Promise<AxiosResponse<StoreResponse[]>> {
+async function getStoreById(id: string, token: string): Promise<AxiosResponse<StoreResponse[]>> {
 	try {
-
-		if(!token) {
-			return Promise.reject({ statusCode: 401, error: "Token não informado", message: Messages.UNEXPECTED_ERROR });
-		}
-
 		const response: AxiosResponse<StoreResponse[]> = await instance.get(`stores/${id}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,

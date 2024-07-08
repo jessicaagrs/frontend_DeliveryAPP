@@ -1,6 +1,6 @@
 import { keyframes } from "styled-components";
 
-export const TitleAnimation = keyframes`
+const TitleAnimation = keyframes`
     0% {
 	animation-timing-function: ease-in;
 	opacity: 1;
@@ -47,24 +47,15 @@ export const TitleAnimation = keyframes`
   }
 `;
 
-export const RotateLeft = keyframes`
-    0% {
-			transform:rotate(0);
-			transform-origin:left;
-		}
-		100% {
-			transform:rotate(360deg);
-			transform-origin:left;
-		}
+const FadeInLeft = keyframes`
+  0% {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+  opacity: 1;
+  transform: none;
+  }
 `;
 
-export const RotateRight= keyframes`
-    0% {
-			transform:rotate(0);
-			transform-origin:right;
-		}
-		100% {
-			transform:rotate(360deg);
-			transform-origin:right;
-		}
-`;
+export { FadeInLeft, TitleAnimation };
