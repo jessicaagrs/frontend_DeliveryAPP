@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Container, SidebarBox, SidebarIconItem, SidebarIdentificationItem, SidebarItems, SidebarList } from "./Sidebar.styles";
+import {
+    Container,
+    SidebarBox,
+    SidebarIconItem,
+    SidebarIdentificationItem,
+    SidebarItems,
+    SidebarList,
+} from "./Sidebar.styles";
 
 type SidebarProps = {
     isOpen: boolean;
@@ -53,5 +60,5 @@ export default function Sidebar({ isOpen }: SidebarProps) {
         );
     }
 
-    return (<></>);
-};
+    return <></>;
+}

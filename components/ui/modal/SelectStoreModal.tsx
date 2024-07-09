@@ -8,7 +8,7 @@ import SelectStore from "../selectStore/SelectStore";
 import { Container, Modal } from "./AlertModal.styles";
 
 interface ActionsModalProps {
-    isOpen: boolean,
+    isOpen: boolean;
     closeModal: () => void;
 }
 
@@ -20,11 +20,13 @@ export const SelectStoreModal = ({ isOpen, closeModal }: ActionsModalProps) => {
 
     const handleClickSaveStore = async () => {
         if (!userStorage) return;
-        const data = await queryClient.fetchQuery({ queryKey: ['storeById'], queryFn: () => getStoreById(selectedStore, userStorage.token) });
+        const data = await queryClient.fetchQuery({
+            queryKey: ["storeById"],
+            queryFn: () => getStoreById(selectedStore, userStorage.token),
+        });
         setLocalStorage(KeysStorage.STORE, data.data);
         closeModal();
     };
-
 
     if (isOpen) {
         return (
@@ -37,6 +39,6 @@ export const SelectStoreModal = ({ isOpen, closeModal }: ActionsModalProps) => {
             </Container>
         );
     } else {
-        return (<></>);
+        return <></>;
     }
 };

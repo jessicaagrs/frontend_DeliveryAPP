@@ -1,7 +1,6 @@
 import { KeysStorage } from "../enum/enums";
 
 export function useLocalStorage() {
-
     function getLocalStorage<T>(key: KeysStorage): T | null {
         const data = localStorage.getItem(key);
 
@@ -43,6 +42,6 @@ export function useLocalStorage() {
         getListLocalStorage,
         setListLocalStorage,
         setLocalStorage,
-        removeAllLocalStorage
+        removeAllLocalStorage,
     };
 }

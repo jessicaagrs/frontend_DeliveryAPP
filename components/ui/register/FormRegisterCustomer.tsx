@@ -7,7 +7,15 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
-import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input } from "./FormRegister.styles";
+import {
+    ButtonPreview,
+    ButtonSubmit,
+    ContainerButtonPreview,
+    Form,
+    FormItems,
+    FormText,
+    Input,
+} from "./FormRegister.styles";
 
 export default function FormRegisterCustomer() {
     const { AlertModalComponent, showModal } = useModal();
@@ -34,7 +42,13 @@ export default function FormRegisterCustomer() {
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        if (!inputNameRef.current?.value || !inputEmailRef.current?.value || !inputPasswordRef.current?.value || !inputConfirmPasswordRef.current?.value || !inputPhoneRef.current?.value) {
+        if (
+            !inputNameRef.current?.value ||
+            !inputEmailRef.current?.value ||
+            !inputPasswordRef.current?.value ||
+            !inputConfirmPasswordRef.current?.value ||
+            !inputPhoneRef.current?.value
+        ) {
             showModal(Messages.INVALID_LOGIN_FIELDS);
             return;
         }
@@ -77,4 +91,4 @@ export default function FormRegisterCustomer() {
             <AlertModalComponent />
         </>
     );
-};
+}

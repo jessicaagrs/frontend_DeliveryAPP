@@ -1,110 +1,111 @@
 import styled from "styled-components";
 
 const ContainerForm = styled.form`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
-	@media (min-width: 320px) and (max-width: 410px) {
-		input {
-			width: 330px;
-		}
-	}
+    @media (min-width: 320px) and (max-width: 410px) {
+        input {
+            width: 330px;
+        }
+    }
 `;
 
 const Input = styled.input`
-	appearance: none;
-	width: 350px;
-	height: 60px;
-	border: none;
-	border-radius: 15px;
-	font-size: 15px;
-	font-weight: var(--font-weight-medium);
-	color: ${(props) => props.theme.colors.textInputGray};
-	outline: none;
-	background-image: ${(props) => (props.type === "email" ? 'url("/input-email.svg")' : 'url("/input-password.svg")')};
-	background-position: left 3% bottom 45%;
-	background-repeat: no-repeat;
-	background-size: 24px;
-	padding-left: 45px;
+    appearance: none;
+    width: 350px;
+    height: 60px;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: var(--font-weight-medium);
+    color: ${(props) => props.theme.colors.textInputGray};
+    outline: none;
+    background-image: ${(props) => (props.type === "email" ? 'url("/input-email.svg")' : 'url("/input-password.svg")')};
+    background-position: left 3% bottom 45%;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    padding-left: 45px;
 
-	&:focus {
-		outline: 2px solid ${(props) => props.theme.colors.buttonPeach};
-	}
+    &:focus {
+        outline: 2px solid ${(props) => props.theme.colors.buttonPeach};
+    }
 `;
 
 const BoxOptions = styled.div`
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 interface ButtonOptionsProps {
-	dark?: boolean;
+    dark?: boolean;
 }
 
 const ButtonOptions = styled.button<ButtonOptionsProps>`
-	appearance: none;
-	border: none;
-	background-color: transparent;
-	cursor: pointer;
-	font-size: 15px;
-	font-weight: var(--font-weight-medium);
-	color: ${(props) => (props.dark ? props.theme.colors.textLink : props.theme.colors.textWhite)};
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: var(--font-weight-medium);
+    color: ${(props) => (props.dark ? props.theme.colors.textLink : props.theme.colors.textWhite)};
 
-	&:hover {
-		text-decoration: underline;
-	}
+    &:hover {
+        text-decoration: underline;
+    }
 `;
 
 const BoxPassword = styled.div`
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
 `;
 
 const ButtonEyePassword = styled.button`
-	appearance: none;
-	background-color: transparent;
-	border: none;
-	position: absolute;
-	cursor: pointer;
-	background-image: url("/password-eye-close.svg");
-	background-repeat: no-repeat;
-	width: 24px;
-	height: 24px;
-	z-index: 1;
-	bottom: 45%;
-	right: 10%;
-	transform: translateY(50%);
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    cursor: pointer;
+    background-image: url("/password-eye-close.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    z-index: 1;
+    bottom: 45%;
+    right: 10%;
+    transform: translateY(50%);
 
-	@media (min-width: 320px) and (max-width: 480px) {
-		right: 8%;
-	}
+    @media (min-width: 320px) and (max-width: 480px) {
+        right: 8%;
+    }
 `;
 
 const ButtonLogin = styled.button`
-	border: none;
-	cursor: pointer;
-	width: 350px;
-	height: 60px;
-	border-radius: 30px;
-	color: ${(props) => props.theme.colors.textWhite};
-	background-color: ${(props) => props.theme.colors.buttonPeach};
-	font-weight: var(--font-weight-regular);
-	font-size: 20px;
+    border: none;
+    cursor: pointer;
+    width: 350px;
+    height: 60px;
+    border-radius: 30px;
+    color: ${(props) => props.theme.colors.textWhite};
+    background-color: ${(props) => props.theme.colors.buttonPeach};
+    font-weight: var(--font-weight-regular);
+    font-size: 20px;
 
-	&:hover {
-		color: ${(props) => props.theme.colors.buttonPeach};
-		background-color: ${(props) => props.theme.colors.textWhite};
-	}
+    &:hover {
+        color: ${(props) => props.theme.colors.buttonPeach};
+        background-color: ${(props) => props.theme.colors.textWhite};
+    }
 
-	@media (min-width: 320px) and (max-width: 410px) {
-		width: 320px;
-	}
+    @media (min-width: 320px) and (max-width: 410px) {
+        width: 320px;
+    }
 `;
 
 export { BoxOptions, BoxPassword, ButtonEyePassword, ButtonLogin, ButtonOptions, ContainerForm, Input };
+

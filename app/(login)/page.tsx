@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Logo from '../../components/ui/acess/Logo';
+import Logo from "../../components/ui/acess/Logo";
 
 export default function Acess() {
     return (

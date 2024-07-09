@@ -24,34 +24,34 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const theme = {
-	colors: {
-		backgroundGreen: "#22C7A9",
-		backgroundGray: "#F3F3F3",
-		buttonGray: "#DADADA",
-		buttonGreen: "#2DB6A3",
-		buttonPeach: "#DFB497",
-		textWhite: "#FFFFFF",
-		textInputGray: "#666161",
-		textGray: "#464444",
-		textLink: "#2D2626",
-		textError: "#FF0000",
-		icons: "#666666",
-		iconSidebar: "#7C7C7A",
-	},
+    colors: {
+        backgroundGreen: "#22C7A9",
+        backgroundGray: "#F3F3F3",
+        buttonGray: "#DADADA",
+        buttonGreen: "#2DB6A3",
+        buttonPeach: "#DFB497",
+        textWhite: "#FFFFFF",
+        textInputGray: "#666161",
+        textGray: "#464444",
+        textLink: "#2D2626",
+        textError: "#FF0000",
+        icons: "#666666",
+        iconSidebar: "#7C7C7A",
+    },
 };
 
 export const customThemeLogin = {
-	...theme,
-	colors: {
-		...theme.colors,
-		background: "#22C7A9",
-	},
+    ...theme,
+    colors: {
+        ...theme.colors,
+        background: "#22C7A9",
+    },
 };
 
 export const customThemeSystem = {
-	...theme,
-	colors: {
-		...theme.colors,
-		background: "#F3F3F3",
-	},
+    ...theme,
+    colors: {
+        ...theme.colors,
+        background: "#F3F3F3",
+    },
 };

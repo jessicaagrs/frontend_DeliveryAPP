@@ -7,7 +7,15 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { BoxOptions, BoxPassword, ButtonEyePassword, ButtonLogin, ButtonOptions, ContainerForm, Input } from "./FormLogin.styles";
+import {
+    BoxOptions,
+    BoxPassword,
+    ButtonEyePassword,
+    ButtonLogin,
+    ButtonOptions,
+    ContainerForm,
+    Input,
+} from "./FormLogin.styles";
 
 export const FormLogin = () => {
     const inputPasswordRef = useRef<HTMLInputElement>(null);
@@ -20,7 +28,7 @@ export const FormLogin = () => {
 
     const handleClickViewPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setViewEye(prevViewEye => !prevViewEye);
+        setViewEye((prevViewEye) => !prevViewEye);
     };
 
     const handleClickRedirectRegister = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,7 +47,9 @@ export const FormLogin = () => {
             showModal(error.message);
         },
         onSuccess: (data) => {
-            setLocalStorage(KeysStorage.USER, data.data);
+            const user = data.data;
+            user.user.email = inputEmailRef.current?.value;
+            setLocalStorage(KeysStorage.USER, user);
             router.push("/home");
         },
     });
@@ -89,7 +99,9 @@ export const FormLogin = () => {
             </BoxPassword>
             <BoxOptions>
                 <ButtonOptions onClick={(event) => handleClickRedirectRegister(event)}>Cadastro</ButtonOptions>
-                <ButtonOptions dark onClick={(event) => handleClickForgotPassword(event)}>Esqueci a senha</ButtonOptions>
+                <ButtonOptions dark onClick={(event) => handleClickForgotPassword(event)}>
+                    Esqueci a senha
+                </ButtonOptions>
             </BoxOptions>
             <ButtonLogin onClick={(event) => handleSubmit(event)}>
                 {mutation.isPending ? "Enviando..." : "Entrar"}
@@ -98,4 +110,3 @@ export const FormLogin = () => {
         </ContainerForm>
     );
 };
-

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { GlobalStyle, customThemeLogin } from "@/styles/Global.styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "styled-components";
@@ -10,14 +10,11 @@ type DefaultProviderProps = {
 
 const queryClient = new QueryClient();
 export default function DefaultProviderLogin(props: DefaultProviderProps) {
-
     return (
         <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={customThemeLogin}>
                 <GlobalStyle />
-                <StoreContextProvider>
-                    {props.children}
-                </StoreContextProvider>
+                <StoreContextProvider>{props.children}</StoreContextProvider>
             </ThemeProvider>
         </QueryClientProvider>
     );
