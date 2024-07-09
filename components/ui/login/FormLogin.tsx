@@ -48,8 +48,8 @@ export const FormLogin = () => {
         },
         onSuccess: (data) => {
             const user = data.data;
-            user.user.email = inputEmailRef.current?.value;
-            setLocalStorage(KeysStorage.USER, user);
+            user.user.email = inputEmailRef.current?.value as string;
+            setLocalStorage(KeysStorage.LOGIN, user);
             router.push("/home");
         },
     });
@@ -62,7 +62,7 @@ export const FormLogin = () => {
             return;
         }
 
-        const typeAcess = getLocalStorage<string>(KeysStorage.TYPEACESS);
+        const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
 
         if (!typeAcess) {
             showModal(Messages.UNEXPECTED_ERROR);

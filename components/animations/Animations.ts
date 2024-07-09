@@ -59,3 +59,4 @@ const FadeInLeft = keyframes`
 `;
 
 export { FadeInLeft, TitleAnimation };
+

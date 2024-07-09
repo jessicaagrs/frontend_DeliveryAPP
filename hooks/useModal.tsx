@@ -16,9 +16,20 @@ export function useModal() {
         setMessage("");
     };
 
-    const AlertModalComponent = () => <AlertModal isOpen={isOpen} closeModal={closeModal} message={message} />;
+    const AlertModalComponent = () => (
+        <AlertModal
+            isOpen={isOpen}
+            closeModal={closeModal}
+            message={message}
+        />
+    );
 
-    const SelectModalComponent = () => <SelectStoreModal isOpen={isOpen} closeModal={closeModal} />;
+    const SelectModalComponent = () => (
+        <SelectStoreModal
+            isOpen={isOpen}
+            closeModal={closeModal}
+        />
+    );
 
     return {
         showModal,

@@ -4,10 +4,11 @@ export enum TypeAcess {
 }
 
 export enum KeysStorage {
-    USER = "user",
+    LOGIN = "login",
     DELIVERY = "delivery",
     STORE = "store",
     TYPEACESS = "typeAcess",
+    USER = "user"
 }
 
 export enum Messages {

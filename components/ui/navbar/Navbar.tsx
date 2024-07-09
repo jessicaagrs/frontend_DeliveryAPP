@@ -2,27 +2,27 @@
 import { KeysStorage, TypeAcess } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
+import { useSidebar } from "@/hooks/useSidebar";
 import useStoreData from "@/hooks/useStoreData";
 import { getStoreByIdShopman } from "@/service/store/storeApi";
 import { LoginResponse } from "@/types/loginType";
 import { StoreResponse } from "@/types/storeType";
 import { useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import Sidebar from "../sidebar/Sidebar";
+import { useEffect } from "react";
 import { ButtonCartContainer, NavButtonCart, NavButtonMenu, NavContainer, NavItems } from "./Navbar.styles";
 
 export default function Navbar() {
-    const [openMenu, setOpenMenu] = useState(false);
     const { showModal, SelectModalComponent } = useModal();
     const { getLocalStorage, setLocalStorage } = useLocalStorage();
     const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
-    const storeSelected = getLocalStorage<StoreResponse>(KeysStorage.STORE);
-    const shopmanSelected = getLocalStorage<LoginResponse>(KeysStorage.USER);
+    const storeSelected = getLocalStorage(KeysStorage.STORE) as StoreResponse;
+    const shopmanSelected = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
     const { setNameStore, nameStore } = useStoreData();
     const queryClient = useQueryClient();
+    const { showSidebar, SidebarComponent } = useSidebar();
 
     const handleClickOpenMenu = () => {
-        setOpenMenu((openMenu) => !openMenu);
+        showSidebar();
     };
 
     const getStoreByShopman = async () => {
@@ -39,7 +39,9 @@ export default function Navbar() {
     useEffect(() => {
         if (typeAcess === TypeAcess.CUSTOMER && !storeSelected) {
             showModal();
-        } else {
+        }
+
+        if (typeAcess === TypeAcess.SHOPMAN) {
             getStoreByShopman();
         }
     }, []);
@@ -53,7 +55,7 @@ export default function Navbar() {
                     <NavButtonCart></NavButtonCart>
                 </ButtonCartContainer>
             </NavItems>
-            <Sidebar isOpen={openMenu} />
+            <SidebarComponent />
             <SelectModalComponent />
         </NavContainer>
     );

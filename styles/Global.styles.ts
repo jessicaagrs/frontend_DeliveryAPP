@@ -19,7 +19,11 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     overflow: hidden;
-    background-color: ${(props) => props.theme.colors.background}; 
+    background-color: ${props => props.theme.colors.background}; 
+  }
+
+  main {
+    margin: ${props => props.theme.spacing.margin};
   }
 `;
 
@@ -53,5 +57,8 @@ export const customThemeSystem = {
     colors: {
         ...theme.colors,
         background: "#F3F3F3",
+    },
+    spacing: {
+        margin: "0 20rem 0 20rem",
     },
 };

@@ -15,14 +15,22 @@ const SidebarBox = styled.div`
     left: 0;
     height: 100%;
     width: 20%;
-    background-color: ${(props) => props.theme.colors.backgroundGray};
-    color: ${(props) => props.theme.colors.textGray};
+    background-color: ${props => props.theme.colors.backgroundGray};
+    color: ${props => props.theme.colors.textGray};
     padding: 15px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 30px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     animation: ${FadeInLeft} 0.5s ease 0s 1 normal none;
+`;
+
+const SidebarExit = styled.button`
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
 `;
 
 const SidebarItems = styled.div`
@@ -67,11 +75,11 @@ const SidebarList = styled.ul`
 
         a {
             text-decoration: none;
-            color: ${(props) => props.theme.colors.iconSidebar};
+            color: ${props => props.theme.colors.iconSidebar};
         }
 
         a:hover {
-            color: ${(props) => props.theme.colors.backgroundGreen};
+            color: ${props => props.theme.colors.backgroundGreen};
         }
     }
 
@@ -80,4 +88,5 @@ const SidebarList = styled.ul`
     }
 `;
 
-export { Container, SidebarBox, SidebarIconItem, SidebarIdentificationItem, SidebarItems, SidebarList };
+export { Container, SidebarBox, SidebarExit, SidebarIconItem, SidebarIdentificationItem, SidebarItems, SidebarList };
+

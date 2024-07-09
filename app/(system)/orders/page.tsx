@@ -1,5 +1,5 @@
 export default function Orders() {
     return (
-        <div>MEUS PEDIDOS</div>
+        <main>MEUS PEDIDOS</main>
     )
 };

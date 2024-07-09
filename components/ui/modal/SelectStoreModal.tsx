@@ -15,7 +15,7 @@ interface ActionsModalProps {
 export const SelectStoreModal = ({ isOpen, closeModal }: ActionsModalProps) => {
     const { selectedStore } = useStoreData();
     const { getLocalStorage, setLocalStorage } = useLocalStorage();
-    const userStorage = getLocalStorage<LoginResponse>(KeysStorage.USER);
+    const userStorage = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
     const queryClient = useQueryClient();
 
     const handleClickSaveStore = async () => {
