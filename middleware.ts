@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-	const userCookie = request.cookies.has("user");
+	const userCookie = request.cookies.has("login");
 	const typeAcessCookie = request.cookies.has("typeAcess");
 	const url = request.nextUrl.clone();
 

@@ -50,6 +50,9 @@ export const customThemeLogin = {
         ...theme.colors,
         background: "#22C7A9",
     },
+    spacing: {
+      margin: "0 0 0 0",
+  }
 };
 
 export const customThemeSystem = {
