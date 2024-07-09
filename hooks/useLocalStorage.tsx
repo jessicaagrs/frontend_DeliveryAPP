@@ -1,7 +1,7 @@
 import { KeysStorage } from "../enum/enums";
 
 export function useLocalStorage() {
-    function getLocalStorage<T>(key: KeysStorage): T | null {
+    function getLocalStorage<T>(key: KeysStorage): T | T[] | null {
         const data = localStorage.getItem(key);
 
         if (!data) return null;
@@ -9,22 +9,10 @@ export function useLocalStorage() {
         return JSON.parse(data);
     }
 
-    function getListLocalStorage<T>(key: KeysStorage): T[] | null {
-        const data = localStorage.getItem(key);
-
-        if (!data) return null;
-
-        return JSON.parse(data);
-    }
-
-    function setLocalStorage<T>(key: KeysStorage, value: T) {
+    function setLocalStorage<T>(key: KeysStorage, value: T | T[]) {
         if (key === KeysStorage.USER || key === KeysStorage.TYPEACESS) {
             document.cookie = `${key}=${encodeURIComponent(JSON.stringify(value))}; path=/;`;
         }
-        localStorage.setItem(key, JSON.stringify(value));
-    }
-
-    function setListLocalStorage<T>(key: KeysStorage, value: T[]) {
         localStorage.setItem(key, JSON.stringify(value));
     }
 
@@ -39,8 +27,6 @@ export function useLocalStorage() {
 
     return {
         getLocalStorage,
-        getListLocalStorage,
-        setListLocalStorage,
         setLocalStorage,
         removeAllLocalStorage,
     };
