@@ -8,7 +8,8 @@ export enum KeysStorage {
     DELIVERY = "delivery",
     STORE = "store",
     TYPEACESS = "typeAcess",
-    USER = "user"
+    CUSTOMER = "customer",
+    SHOPMAN = "shopman",
 }
 
 export enum Messages {

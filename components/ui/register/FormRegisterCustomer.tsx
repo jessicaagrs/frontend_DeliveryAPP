@@ -1,6 +1,6 @@
 import { Messages } from "@/enum/enums";
 import { useModal } from "@/hooks/useModal";
-import createCustomer from "@/service/customer/customerApi";
+import { createCustomer } from "@/service/customer/customerApi";
 import { CustomerRequest } from "@/types/customerType";
 import { extractNumbers } from "@/utils/formatter";
 import { useMutation } from "@tanstack/react-query";
@@ -32,10 +32,10 @@ export default function FormRegisterCustomer() {
 
     const mutation = useMutation<AxiosResponse<string>, AxiosError, CustomerRequest>({
         mutationFn: createCustomer,
-        onError: (error) => {
+        onError: error => {
             showModal(error.message);
         },
-        onSuccess: (data) => {
+        onSuccess: data => {
             setPreviewPageLogin();
         },
     });
@@ -78,13 +78,33 @@ export default function FormRegisterCustomer() {
                     <h1>Cadastro de Cliente</h1>
                 </FormText>
                 <FormItems>
-                    <Input type="text" placeholder="Nome Completo" ref={inputNameRef} />
-                    <Input type="email" placeholder="Email" ref={inputEmailRef} />
-                    <Input type="password" placeholder="Senha" ref={inputPasswordRef} />
-                    <Input type="password" placeholder="Confirme a senha" ref={inputConfirmPasswordRef} />
-                    <Input type="tel" placeholder="Telefone" ref={inputPhoneRef} />
+                    <Input
+                        type="text"
+                        placeholder="Nome Completo"
+                        ref={inputNameRef}
+                    />
+                    <Input
+                        type="email"
+                        placeholder="Email"
+                        ref={inputEmailRef}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Senha"
+                        ref={inputPasswordRef}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Confirme a senha"
+                        ref={inputConfirmPasswordRef}
+                    />
+                    <Input
+                        type="tel"
+                        placeholder="Telefone"
+                        ref={inputPhoneRef}
+                    />
                 </FormItems>
-                <ButtonSubmit onClick={(event) => handleSubmit(event)}>
+                <ButtonSubmit onClick={event => handleSubmit(event)}>
                     {mutation.isPending ? "Enviando..." : "Cadastrar"}
                 </ButtonSubmit>
             </Form>

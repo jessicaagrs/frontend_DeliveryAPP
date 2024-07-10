@@ -1,3 +1,7 @@
+import { KeysStorage } from "@/enum/enums";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { CustomerResponse } from "@/types/customerType";
+import { ShopmanResponse } from "@/types/shopmanType";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,6 +20,10 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ isOpen, handleClose }: SidebarProps) {
+    const { getLocalStorage } = useLocalStorage();
+    const customer = getLocalStorage(KeysStorage.CUSTOMER) as CustomerResponse;
+    const shopman = getLocalStorage(KeysStorage.SHOPMAN) as ShopmanResponse;
+
     if (isOpen) {
         return (
             <Container>
@@ -31,8 +39,8 @@ export default function Sidebar({ isOpen, handleClose }: SidebarProps) {
                     <SidebarItems>
                         <SidebarIconItem></SidebarIconItem>
                         <SidebarIdentificationItem>
-                            <p>Jessica</p>
-                            <span>email@email.com</span>
+                            <p>{customer ? customer.name : shopman.name}</p>
+                            <span>{customer ? customer.email : shopman.email}</span>
                         </SidebarIdentificationItem>
                     </SidebarItems>
                     <SidebarList>
