@@ -1,5 +1,7 @@
 "use client";
 
+import FilterProducts from "@/components/ui/home/filterProducts";
+import SearchProducts from "@/components/ui/home/searchProducts";
 import { KeysStorage, TypeAcess } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { getCustomerById } from "@/service/customer/customerApi";
@@ -37,5 +39,10 @@ export default function Home() {
         fetchUserData();
     }, []);
 
-    return <main>teste</main>;
+    return (
+        <main>
+            <SearchProducts />
+            <FilterProducts />
+        </main>
+    );
 }

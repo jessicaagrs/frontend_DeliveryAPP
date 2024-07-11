@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 export const theme = {
     colors: {
         backgroundGreen: "#22C7A9",
+        backgroundGreenLight: "#D7EFE6",
         backgroundGray: "#F3F3F3",
         buttonGray: "#DADADA",
         buttonGreen: "#2DB6A3",
@@ -51,15 +52,15 @@ export const customThemeLogin = {
         background: "#22C7A9",
     },
     spacing: {
-      margin: "0 0 0 0",
-  }
+        margin: "0 0 0 0",
+    },
 };
 
 export const customThemeSystem = {
     ...theme,
     colors: {
         ...theme.colors,
-        background: "#F3F3F3",
+        background: "#D7EFE6",
     },
     spacing: {
         margin: "0 20rem 0 20rem",

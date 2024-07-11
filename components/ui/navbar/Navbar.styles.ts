@@ -5,6 +5,7 @@ const NavContainer = styled.nav`
 	justify-content: space-between;
 	align-items: center;
 	margin: 1.5rem;
+	
 `;
 
 const NavButtonMenu = styled.button`

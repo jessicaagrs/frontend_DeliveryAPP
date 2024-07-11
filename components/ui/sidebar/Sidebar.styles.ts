@@ -15,7 +15,7 @@ const SidebarBox = styled.div`
     left: 0;
     height: 100%;
     width: 20%;
-    background-color: ${props => props.theme.colors.backgroundGray};
+    background-color: ${props => props.theme.colors.backgroundGreenLight};
     color: ${props => props.theme.colors.textGray};
     padding: 15px;
     display: flex;
@@ -75,7 +75,7 @@ const SidebarList = styled.ul`
 
         a {
             text-decoration: none;
-            color: ${props => props.theme.colors.iconSidebar};
+            color: ${props => props.theme.colors.textLink};
         }
 
         a:hover {
