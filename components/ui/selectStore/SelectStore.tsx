@@ -30,7 +30,7 @@ export default function SelectStore({ isStoreRegistrationPossible }: SelectStore
         setSelectStore(storeId);
     };
 
-    if(data?.data.length === 0){
+    if(data?.data.length === 0 && pathname === "/home"){
         alert(Messages.REDIRECT_ERROR);
         clearStorageBrowser();
     }

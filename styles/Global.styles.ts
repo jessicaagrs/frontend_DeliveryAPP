@@ -20,10 +20,13 @@ export const GlobalStyle = createGlobalStyle`
   body {
     overflow: hidden;
     background-color: ${props => props.theme.colors.background}; 
+    display: ${props => props.theme.display};
+    height: 100vh;
   }
 
   main {
     margin: ${props => props.theme.spacing.margin};
+    width: 100%;
   }
 `;
 
@@ -54,6 +57,7 @@ export const customThemeLogin = {
     spacing: {
         margin: "0 0 0 0",
     },
+    display: "initial",
 };
 
 export const customThemeSystem = {
@@ -65,4 +69,5 @@ export const customThemeSystem = {
     spacing: {
         margin: "0 20rem 0 20rem",
     },
+    display: "flex",
 };

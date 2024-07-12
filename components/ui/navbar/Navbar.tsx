@@ -1,68 +1,107 @@
 "use client";
-import { KeysStorage, TypeAcess } from "@/enum/enums";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useModal } from "@/hooks/useModal";
-import { useSidebar } from "@/hooks/useSidebar";
-import useStoreData from "@/hooks/useStoreData";
-import { getStoreByIdShopman } from "@/service/store/storeApi";
-import { LoginResponse } from "@/types/loginType";
-import { StoreResponse } from "@/types/storeType";
-import { useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { ButtonCartContainer, NavButtonCart, NavButtonMenu, NavContainer, NavItems } from "./Navbar.styles";
-import { ErrorApi } from "@/types/errorApiType";
+import Image from "next/image";
+import Link from "next/link";
+import { Nav, NavList, NavLogo, NavUser, NavUserDetails } from "./Navbar.styles";
 
 export default function Navbar() {
-    const { showModal, SelectModalComponent } = useModal();
-    const { getLocalStorage, setLocalStorage } = useLocalStorage();
-    const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
-    const storeSelected = getLocalStorage(KeysStorage.STORE) as StoreResponse;
-    const shopmanSelected = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
-    const { setNameStore, nameStore } = useStoreData();
-    const queryClient = useQueryClient();
-    const { showSidebar, SidebarComponent } = useSidebar();
-
-    const handleClickOpenMenu = () => {
-        showSidebar();
-    };
-
-    const getStoreByShopman = async () => {
-        if (shopmanSelected?.token && shopmanSelected?.user?.email) {
-            try {
-                const data = await queryClient.fetchQuery({
-                    queryKey: ["storeById"],
-                    queryFn: () => getStoreByIdShopman(shopmanSelected.user.email, shopmanSelected.token),
-                });
-                setNameStore(data.data.corporateReason);
-                setLocalStorage(KeysStorage.STORE, data.data);
-            } catch (error: any) {
-                const errorResponse = error as ErrorApi;
-                showModal(errorResponse.message);
-            }
-        }
-    };
-
-    useEffect(() => {
-        if (typeAcess === TypeAcess.CUSTOMER && !storeSelected) {
-            showModal();
-        }
-
-        if (typeAcess === TypeAcess.SHOPMAN) {
-            getStoreByShopman();
-        }
-    }, []);
-
+    
     return (
-        <NavContainer>
-            <NavButtonMenu onClick={handleClickOpenMenu}></NavButtonMenu>
-            <NavItems>
-                <span>{nameStore === "" ? storeSelected?.corporateReason : nameStore}</span>
-                <ButtonCartContainer>
-                    <NavButtonCart></NavButtonCart>
-                </ButtonCartContainer>
-            </NavItems>
-            <SidebarComponent />
-            <SelectModalComponent />
-        </NavContainer>
+        <Nav>
+            <NavLogo>
+                <Image
+                    src="/logo-navbar.svg"
+                    width={34}
+                    height={34}
+                    alt="logo do sistema"
+                />
+                <h1>Delivery APP</h1>
+                <Image
+                    src="/close-navbar.svg"
+                    width={34}
+                    height={34}
+                    alt="botão para sair"
+                />
+            </NavLogo>
+            <NavUser>
+                <Image
+                    src="/user-navbar.svg"
+                    width={34}
+                    height={34}
+                    alt="icone de usuário"
+                />
+                <NavUserDetails>
+                    <span>Nome</span>
+                    <p>email</p>
+                </NavUserDetails>
+            </NavUser>
+            <NavList>
+                <li>
+                    <Image
+                        src="/home-navbar.svg"
+                        width={34}
+                        height={34}
+                        alt="teste"
+                    />
+                    <Link href="#">Home</Link>
+                </li>
+                <li>
+                    <Image
+                        src="/orders-navbar.svg"
+                        width={34}
+                        height={34}
+                        alt="teste"
+                    />
+                    <Link href="#">Pedidos</Link>
+                </li>
+                <li>
+                    <Image
+                        src="/management-navbar.svg"
+                        width={34}
+                        height={34}
+                        alt="teste"
+                    />
+                    <Link href="#">Gerenciar Pedidos</Link>
+                </li>
+                <li>
+                    <Image
+                        src="/payment-navbar.svg"
+                        width={34}
+                        height={34}
+                        alt="teste"
+                    />
+                    <Link href="#">Formas de Pagamento</Link>
+                </li>
+                <li>
+                    <Image
+                        src="/product-navbar.svg"
+                        width={34}
+                        height={34}
+                        alt="teste"
+                    />
+                    <Link href="#">Produtos</Link>
+                </li>
+                <li>
+                    <Image
+                        src="/shopman-navbar.svg"
+                        width={34}
+                        height={34}
+                        alt="teste"
+                    />
+                    <Link href="#">Cadastro de Vendedores</Link>
+                </li>
+                <li>
+                    <Image
+                        src="/settings-navbar.svg"
+                        width={34}
+                        height={34}
+                        alt="teste"
+                    />
+                    <Link href="#">Configurações</Link>
+                </li>
+            </NavList>
+            <div>
+                <button>Sair</button>
+            </div>
+        </Nav>
     );
 }
