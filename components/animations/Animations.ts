@@ -58,5 +58,16 @@ const FadeInLeft = keyframes`
   }
 `;
 
-export { FadeInLeft, TitleAnimation };
+const FadeOutLeft = keyframes`
+  0% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  }
+`;
+
+export { FadeInLeft, FadeOutLeft, TitleAnimation };
 
