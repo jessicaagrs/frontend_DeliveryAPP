@@ -4,6 +4,8 @@ import { StoreResponse } from "@/types/storeType";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { ContainerSelect, Select } from "./SelectStore.styles";
+import { Messages } from "@/enum/enums";
+import { clearStorageBrowser } from "@/utils/routers";
 
 type SelectStoreProps = {
     isStoreRegistrationPossible: boolean;
@@ -27,6 +29,11 @@ export default function SelectStore({ isStoreRegistrationPossible }: SelectStore
         const storeId = event.target.value;
         setSelectStore(storeId);
     };
+
+    if(data?.data.length === 0){
+        alert(Messages.REDIRECT_ERROR);
+        clearStorageBrowser();
+    }
 
     return (
         <ContainerSelect>

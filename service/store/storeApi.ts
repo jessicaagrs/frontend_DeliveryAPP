@@ -1,7 +1,7 @@
 import { Messages } from "@/enum/enums";
-import { ErrorApi } from "@/types/errorApiType";
 import { StoreRequest, StoreResponse } from "@/types/storeType";
 import axios, { AxiosResponse } from "axios";
+import { handleApiError } from "../error/errorApi";
 import { getShopmanById } from "../shopman/shopmanApi";
 
 const instance = axios.create({
@@ -13,21 +13,7 @@ async function createStore(data: StoreRequest): Promise<AxiosResponse<string>> {
         const response: AxiosResponse<string> = await instance.post("stores", data);
         return response;
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            if (error.response) {
-                const errorResponse = new Error() as ErrorApi;
-                errorResponse.statusCode = error.response.status;
-                errorResponse.error = error.response.data.error;
-                errorResponse.message = error.response.data.message;
-                return Promise.reject(errorResponse);
-            }
-        }
-
-        const internalError = new Error(Messages.UNEXPECTED_ERROR) as ErrorApi;
-        internalError.statusCode = 500;
-        internalError.error = "Erro Interno";
-        internalError.message = Messages.UNEXPECTED_ERROR;
-        return Promise.reject(internalError);
+        return handleApiError(error);
     }
 }
 
@@ -36,21 +22,7 @@ async function getStores(): Promise<AxiosResponse<StoreResponse[]>> {
         const response: AxiosResponse<StoreResponse[]> = await instance.get("stores");
         return response;
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            if (error.response) {
-                const errorResponse = new Error() as ErrorApi;
-                errorResponse.statusCode = error.response.status;
-                errorResponse.error = error.response.data.error;
-                errorResponse.message = error.response.data.message;
-                return Promise.reject(errorResponse);
-            }
-        }
-
-        const internalError = new Error(Messages.UNEXPECTED_ERROR) as ErrorApi;
-        internalError.statusCode = 500;
-        internalError.error = "Erro Interno";
-        internalError.message = Messages.UNEXPECTED_ERROR;
-        return Promise.reject(internalError);
+        return handleApiError(error);
     }
 }
 
@@ -63,21 +35,7 @@ async function getStoreById(id: string, token: string): Promise<AxiosResponse<St
         });
         return response;
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            if (error.response) {
-                const errorResponse = new Error() as ErrorApi;
-                errorResponse.statusCode = error.response.status;
-                errorResponse.error = error.response.data.error;
-                errorResponse.message = error.response.data.message;
-                return Promise.reject(errorResponse);
-            }
-        }
-
-        const internalError = new Error(Messages.UNEXPECTED_ERROR) as ErrorApi;
-        internalError.statusCode = 500;
-        internalError.error = "Erro Interno";
-        internalError.message = Messages.UNEXPECTED_ERROR;
-        return Promise.reject(internalError);
+        return handleApiError(error);
     }
 }
 
@@ -94,21 +52,7 @@ async function getStoreByIdShopman(
 
         return store;
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-            if (error.response) {
-                const errorResponse = new Error() as ErrorApi;
-                errorResponse.statusCode = error.response.status;
-                errorResponse.error = error.response.data.error;
-                errorResponse.message = error.response.data.message;
-                return Promise.reject(errorResponse);
-            }
-        }
-
-        const internalError = new Error(Messages.UNEXPECTED_ERROR) as ErrorApi;
-        internalError.statusCode = 500;
-        internalError.error = "Erro Interno";
-        internalError.message = Messages.UNEXPECTED_ERROR;
-        return Promise.reject(internalError);
+        return handleApiError(error);
     }
 }
 

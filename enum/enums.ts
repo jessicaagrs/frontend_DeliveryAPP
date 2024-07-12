@@ -18,4 +18,5 @@ export enum Messages {
     UNEXPECTED_ERROR = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
     INVALID_PASSWORD_CONFIRM_PASSWORD = "Senha e confirmação de senha não conferem.",
     SUCCESS_REGISTER = "Cadastro realizado com sucesso. Você será redirecionado a tela de login.",
+    REDIRECT_ERROR = "Houve um problema, vamos redirecioná-lo ao login."
 }

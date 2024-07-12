@@ -10,6 +10,7 @@ import { StoreResponse } from "@/types/storeType";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { ButtonCartContainer, NavButtonCart, NavButtonMenu, NavContainer, NavItems } from "./Navbar.styles";
+import { ErrorApi } from "@/types/errorApiType";
 
 export default function Navbar() {
     const { showModal, SelectModalComponent } = useModal();
@@ -27,12 +28,17 @@ export default function Navbar() {
 
     const getStoreByShopman = async () => {
         if (shopmanSelected?.token && shopmanSelected?.user?.email) {
-            const data = await queryClient.fetchQuery({
-                queryKey: ["storeById"],
-                queryFn: () => getStoreByIdShopman(shopmanSelected.user.email, shopmanSelected.token),
-            });
-            setNameStore(data.data.corporateReason);
-            setLocalStorage(KeysStorage.STORE, data.data);
+            try {
+                const data = await queryClient.fetchQuery({
+                    queryKey: ["storeById"],
+                    queryFn: () => getStoreByIdShopman(shopmanSelected.user.email, shopmanSelected.token),
+                });
+                setNameStore(data.data.corporateReason);
+                setLocalStorage(KeysStorage.STORE, data.data);
+            } catch (error: any) {
+                const errorResponse = error as ErrorApi;
+                showModal(errorResponse.message);
+            }
         }
     };
 

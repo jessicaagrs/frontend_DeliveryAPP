@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import { KeysStorage } from "../enum/enums";
 
 export function useLocalStorage() {
@@ -11,17 +10,16 @@ export function useLocalStorage() {
     }
 
     function setLocalStorage<T>(key: KeysStorage, value: T | T[]) {
-        const valueString = JSON.stringify(value);
         if (key === KeysStorage.LOGIN || key === KeysStorage.TYPEACESS) {
-            cookies().set(key, valueString);
+            document.cookie = `${key}=${encodeURIComponent(JSON.stringify(value))}; path=/;`;
         }
-        localStorage.setItem(key, valueString);
+        localStorage.setItem(key, JSON.stringify(value));
     }
 
     function removeAllLocalStorage() {
         for (const key in KeysStorage) {
             if (key === KeysStorage.LOGIN || key === KeysStorage.TYPEACESS) {
-                cookies().delete(key);
+                document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
             }
             localStorage.removeItem(key);
         }
