@@ -1,31 +1,11 @@
-'use client';
+"use client";
 import FormRegisterCustomer from "@/components/ui/register/FormRegisterCustomer";
 import FormRegisterShopman from "@/components/ui/register/FormRegisterShopman";
-import { KeysStorage, TypeAcess } from "@/enum/enums";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useEffect, useState } from "react";
+import { TypeAcess } from "@/enum/enums";
+import useTypeAcess from "@/hooks/useTypeAcess";
 
 export default function Register() {
-    const [typeAcess, setTypeAccess] = useState('');
-    const { getLocalStorage } = useLocalStorage();
+    const { typeAcessSelected } = useTypeAcess();
 
-    useEffect(() => {
-        const type = getLocalStorage(KeysStorage.TYPEACESS) as string;
-        setTypeAccess(type);
-    }, []);
-
-    return (
-        <main>
-            {
-                typeAcess === TypeAcess.CUSTOMER ?
-                    (
-                        <FormRegisterCustomer />
-                    )
-                    :
-                    (
-                        <FormRegisterShopman />
-                    )
-            }
-        </main>
-    );
-};
+    return <main>{typeAcessSelected === TypeAcess.CUSTOMER ? <FormRegisterCustomer /> : <FormRegisterShopman />}</main>;
+}

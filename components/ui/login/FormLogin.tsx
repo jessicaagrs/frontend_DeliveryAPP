@@ -1,6 +1,7 @@
 import { KeysStorage, Messages } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
+import useTypeAcess from "@/hooks/useTypeAcess";
 import loginSession from "@/service/login/loginApi";
 import { LoginRequest, LoginResponse } from "@/types/loginType";
 import { useMutation } from "@tanstack/react-query";
@@ -24,11 +25,12 @@ export const FormLogin = () => {
     const [viewEye, setViewEye] = useState(false);
     const router = useRouter();
     const { AlertModalComponent, showModal } = useModal();
-    const { setLocalStorage, getLocalStorage } = useLocalStorage();
+    const { setLocalStorage } = useLocalStorage();
+    const { typeAcessSelected } = useTypeAcess();
 
     const handleClickViewPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setViewEye((prevViewEye) => !prevViewEye);
+        setViewEye(prevViewEye => !prevViewEye);
     };
 
     const handleClickRedirectRegister = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,10 +45,10 @@ export const FormLogin = () => {
 
     const mutation = useMutation<AxiosResponse<LoginResponse>, AxiosError, LoginRequest>({
         mutationFn: loginSession,
-        onError: (error) => {
+        onError: error => {
             showModal(error.message);
         },
-        onSuccess: (data) => {
+        onSuccess: data => {
             const user = data.data;
             user.user.email = inputEmailRef.current?.value as string;
             setLocalStorage(KeysStorage.LOGIN, user);
@@ -62,9 +64,7 @@ export const FormLogin = () => {
             return;
         }
 
-        const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
-
-        if (!typeAcess) {
+        if (!typeAcessSelected) {
             showModal(Messages.UNEXPECTED_ERROR);
             return;
         }
@@ -72,7 +72,7 @@ export const FormLogin = () => {
         const dataUser: LoginRequest = {
             email: inputEmailRef.current?.value,
             password: inputPasswordRef.current?.value,
-            typeLogin: typeAcess,
+            typeLogin: typeAcessSelected,
         };
 
         mutation.mutate(dataUser);
@@ -92,18 +92,32 @@ export const FormLogin = () => {
 
     return (
         <ContainerForm>
-            <Input type="email" placeholder="Email" ref={inputEmailRef} />
+            <Input
+                type="email"
+                placeholder="Email"
+                ref={inputEmailRef}
+            />
             <BoxPassword>
-                <Input type="password" placeholder="Senha" ref={inputPasswordRef} />
-                <ButtonEyePassword ref={buttonEyePasswordRef} onClick={(event) => handleClickViewPassword(event)} />
+                <Input
+                    type="password"
+                    placeholder="Senha"
+                    ref={inputPasswordRef}
+                />
+                <ButtonEyePassword
+                    ref={buttonEyePasswordRef}
+                    onClick={event => handleClickViewPassword(event)}
+                />
             </BoxPassword>
             <BoxOptions>
-                <ButtonOptions onClick={(event) => handleClickRedirectRegister(event)}>Cadastro</ButtonOptions>
-                <ButtonOptions dark onClick={(event) => handleClickForgotPassword(event)}>
+                <ButtonOptions onClick={event => handleClickRedirectRegister(event)}>Cadastro</ButtonOptions>
+                <ButtonOptions
+                    dark
+                    onClick={event => handleClickForgotPassword(event)}
+                >
                     Esqueci a senha
                 </ButtonOptions>
             </BoxOptions>
-            <ButtonLogin onClick={(event) => handleSubmit(event)}>
+            <ButtonLogin onClick={event => handleSubmit(event)}>
                 {mutation.isPending ? "Enviando..." : "Entrar"}
             </ButtonLogin>
             <AlertModalComponent />

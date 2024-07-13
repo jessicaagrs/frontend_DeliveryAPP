@@ -3,8 +3,11 @@
 import FilterProducts from "@/components/ui/home/filterProducts";
 import SearchProducts from "@/components/ui/home/searchProducts";
 import { KeysStorage, TypeAcess } from "@/enum/enums";
+import useCustomerData from "@/hooks/useCustomerData";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
+import useShopmanData from "@/hooks/useShopmanData";
+import useTypeAcess from "@/hooks/useTypeAcess";
 import { getCustomerById } from "@/service/customer/customerApi";
 import { getShopmanById } from "@/service/shopman/shopmanApi";
 import { ErrorApi } from "@/types/errorApiType";
@@ -13,21 +16,23 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 export default function Home() {
-    const { getLocalStorage, setLocalStorage } = useLocalStorage();
-    const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
+    const { getLocalStorage } = useLocalStorage();
     const login = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
     const queryClient = useQueryClient();
     const { showModal } = useModal();
+    const { setCustomer } = useCustomerData();
+    const { setShopman } = useShopmanData();
+    const { typeAcessSelected } = useTypeAcess();
 
     const fetchUserData = async () => {
-        if (typeAcess === TypeAcess.CUSTOMER) {
+        if (typeAcessSelected === TypeAcess.CUSTOMER) {
             try {
                 const dataCustomer = await queryClient.fetchQuery({
                     queryKey: ["customer"],
                     queryFn: () => getCustomerById(login.user.email, login.token),
                 });
 
-                setLocalStorage(KeysStorage.CUSTOMER, dataCustomer.data);
+                setCustomer(dataCustomer.data);
                 return;
             } catch (error: any) {
                 const errorResponse = error as ErrorApi;
@@ -41,7 +46,7 @@ export default function Home() {
                 queryFn: () => getShopmanById(login.user.email, login.token),
             });
 
-            setLocalStorage(KeysStorage.SHOPMAN, dataShopman.data);
+            setShopman(dataShopman.data);
         } catch (error: any) {
             const errorResponse = error as ErrorApi;
             showModal(errorResponse.message);
