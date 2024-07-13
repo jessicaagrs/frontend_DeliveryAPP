@@ -18,14 +18,15 @@ import { useEffect } from "react";
 export default function Home() {
     const { getLocalStorage } = useLocalStorage();
     const login = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
+    const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
     const queryClient = useQueryClient();
-    const { showModal } = useModal();
+    const { showModal, AlertModalComponent } = useModal();
     const { setCustomer } = useCustomerData();
     const { setShopman } = useShopmanData();
-    const { typeAcessSelected } = useTypeAcess();
+    const { setTypeAcessSelected } = useTypeAcess();
 
     const fetchUserData = async () => {
-        if (typeAcessSelected === TypeAcess.CUSTOMER) {
+        if (typeAcess === TypeAcess.CUSTOMER) {
             try {
                 const dataCustomer = await queryClient.fetchQuery({
                     queryKey: ["customer"],
@@ -55,12 +56,14 @@ export default function Home() {
 
     useEffect(() => {
         fetchUserData();
+        setTypeAcessSelected(typeAcess);
     }, []);
 
     return (
         <main>
             <SearchProducts />
             <FilterProducts />
+            <AlertModalComponent />
         </main>
     );
 }

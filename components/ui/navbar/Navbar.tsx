@@ -1,26 +1,30 @@
 "use client";
+import useCustomerData from "@/hooks/useCustomerData";
+import useShopmanData from "@/hooks/useShopmanData";
+import { clearStorageBrowser } from "@/utils/routers";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Nav, NavButton, NavButtonLogo, NavList, NavLogo, NavUser, NavUserDetails } from "./Navbar.styles";
 
 export default function Navbar() {
-    const titleRef = useRef<HTMLHeadingElement>(null);
-    const imageLogoRef = useRef<HTMLImageElement>(null);
-    const spanRef = useRef<HTMLSpanElement>(null);
-    const paragraphRef = useRef<HTMLParagraphElement>(null);
-    const ulRef = useRef<HTMLUListElement>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const { customer } = useCustomerData();
+    const { shopman } = useShopmanData();
 
     const handleToggleNavbar = () => {
         setIsOpen(isOpen => !isOpen);
+    };
+
+    const handleClickLogout = () => {
+        clearStorageBrowser();
     };
 
     return (
         <Nav isOpen={isOpen}>
             <NavLogo isOpen={isOpen}>
                 <NavButtonLogo isOpen={isOpen}></NavButtonLogo>
-                <h1 ref={titleRef}>Delivery APP</h1>
+                <h1>Delivery APP</h1>
                 <NavButton
                     onClick={handleToggleNavbar}
                     isOpen={isOpen}
@@ -34,11 +38,14 @@ export default function Navbar() {
                     alt="icone de usuário"
                 />
                 <NavUserDetails isOpen={isOpen}>
-                    <span ref={spanRef}>Nome</span>
-                    <p ref={paragraphRef}>email</p>
+                    <span>{customer ? customer.name : shopman?.name}</span>
+                    <p>{customer ? customer.email : shopman?.email}</p>
                 </NavUserDetails>
             </NavUser>
-            <NavList ref={ulRef} isOpen={isOpen}>
+            <NavList
+                isOpen={isOpen}
+                onClick={handleToggleNavbar}
+            >
                 <li>
                     <Image
                         src="/home-navbar.svg"
@@ -109,7 +116,12 @@ export default function Navbar() {
                         height={34}
                         alt="ícone de saída do sistema"
                     />
-                    <Link href="/">Sair</Link>
+                    <Link
+                        href="/"
+                        onClick={handleClickLogout}
+                    >
+                        Sair
+                    </Link>
                 </li>
             </NavList>
         </Nav>

@@ -18,11 +18,11 @@ const Nav = styled.nav<NavbarProps>`
 const NavLogo = styled.div<NavbarProps>`
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
 
     h1 {
         display: ${props => (props.isOpen ? "block" : "none")};
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: var(--font-weight-semibold);
     }
 `;
@@ -55,7 +55,7 @@ const NavUserDetails = styled.div<NavbarProps>`
     gap: 5px;
 
     span {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: var(--font-weight-semibold);
         display: ${props => (props.isOpen ? "block" : "none")};
     }
@@ -77,7 +77,6 @@ const NavList = styled.ul<NavbarProps>`
         display: flex;
         align-items: center;
         gap: 20px;
-        cursor: pointer;
 
         a {
             text-decoration: none;

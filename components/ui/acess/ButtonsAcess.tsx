@@ -10,7 +10,7 @@ export const ButtonsAcess = () => {
     const { setTypeAcessSelected } = useTypeAcess();
     const { setLocalStorage } = useLocalStorage();
 
-    const handleClick = (type: TypeAcess, event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (type: string, event: React.MouseEvent<HTMLButtonElement>) => {
         setTypeAcessSelected(type);
         setLocalStorage(KeysStorage.TYPEACESS, type);
         route.push("/login");
