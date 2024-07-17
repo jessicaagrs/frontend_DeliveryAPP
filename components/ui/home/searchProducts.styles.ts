@@ -42,7 +42,11 @@ const Input = styled.input`
     }
 `;
 
-const ButtonSearch = styled.button`
+interface ButtonSearchProps {
+    isVisible: boolean;
+}
+
+const ButtonSearch = styled.button<ButtonSearchProps>`
     background-image: url("/search-home.svg");
     background-repeat: no-repeat;
     background-size: 25px;
@@ -54,6 +58,7 @@ const ButtonSearch = styled.button`
     right: 10px;
     bottom: 4px;
     cursor: pointer;
+    display: ${props => (props.isVisible? "block" : "none")};
 `;
 
 export { ButtonSearch, ContainerSearch, Input, SearchItems };
