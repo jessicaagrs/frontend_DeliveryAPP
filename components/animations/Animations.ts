@@ -47,27 +47,16 @@ const TitleAnimation = keyframes`
   }
 `;
 
-const FadeInLeft = keyframes`
+const SlideInLeft = keyframes`
   0% {
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  visibility: visible;
   }
   100% {
-  opacity: 1;
-  transform: none;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
   }
 `;
 
-const FadeOutLeft = keyframes`
-  0% {
-  opacity: 1;
-  }
-  100% {
-  opacity: 0;
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
-  }
-`;
-
-export { FadeInLeft, FadeOutLeft, TitleAnimation };
-
+export { SlideInLeft, TitleAnimation };

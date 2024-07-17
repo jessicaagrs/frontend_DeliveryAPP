@@ -1,3 +1,4 @@
+import { SlideInLeft } from "@/components/animations/Animations";
 import styled from "styled-components";
 
 interface NavbarProps {
@@ -9,10 +10,11 @@ const Nav = styled.nav<NavbarProps>`
     flex-direction: column;
     justify-content: space-between;
     width: ${props => (props.isOpen ? "30%" : "3.5%")};
-    color: ${props => props.theme.colors.textGray};
-    background-color: ${props => props.theme.colors.backgroundGreen};
+    color: ${props => props.theme.colors.textWhite};
+    background-color: ${props => props.theme.colors.backgroundSidebar};
     padding: 1rem 0 1.5rem 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    animation: ${props => (props.isOpen ? SlideInLeft : "none")} 1s ease 0s 1 normal none;
 `;
 
 const NavLogo = styled.div<NavbarProps>`
@@ -82,11 +84,11 @@ const NavList = styled.ul<NavbarProps>`
             text-decoration: none;
             font-size: 1rem;
             font-weight: var(--font-weight-normal);
-            color: ${props => props.theme.colors.textGray};
+            color: ${props => props.theme.colors.textWhite};
             display: ${props => (props.isOpen ? "block" : "none")};
 
             &:hover {
-                color: ${props => props.theme.colors.textWhite};
+                color: ${props => props.theme.colors.buttonPeach};
                 text-decoration: underline;
             }
         }
@@ -98,4 +100,3 @@ const NavList = styled.ul<NavbarProps>`
 `;
 
 export { Nav, NavButton, NavButtonLogo, NavList, NavLogo, NavUser, NavUserDetails };
-

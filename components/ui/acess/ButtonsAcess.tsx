@@ -3,6 +3,7 @@ import { KeysStorage, TypeAcess } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import useTypeAcess from "@/hooks/useTypeAcess";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import { ButtonsContainer } from "./ButtonAcess.styles";
 
 export const ButtonsAcess = () => {
@@ -10,11 +11,13 @@ export const ButtonsAcess = () => {
     const { setTypeAcessSelected } = useTypeAcess();
     const { setLocalStorage } = useLocalStorage();
 
-    const handleClick = (type: string, event: React.MouseEvent<HTMLButtonElement>) => {
-        setTypeAcessSelected(type);
-        setLocalStorage(KeysStorage.TYPEACESS, type);
-        route.push("/login");
-    };
+    const handleClick = useMemo(() => {
+        return (type: string, event: React.MouseEvent<HTMLButtonElement>) => {
+            setTypeAcessSelected(type);
+            setLocalStorage(KeysStorage.TYPEACESS, type);
+            route.push("/login");
+        };
+    }, []);
 
     return (
         <ButtonsContainer>

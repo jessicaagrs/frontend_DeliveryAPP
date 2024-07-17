@@ -5,9 +5,16 @@ const ContainerSearch = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-top: 2rem;
+`;
+
+const SearchItems = styled.div`
+    width: 500px;
+    position: relative;
 `;
 
 const Input = styled.input`
+    appearance: none;
     width: 500px;
     height: 50px;
     border-radius: 15px;
@@ -18,13 +25,35 @@ const Input = styled.input`
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.88);
-    padding-left: 0.5rem;
+    padding: 0 1rem 0 1rem;
     font-size: 15px;
-    background-image: url("/search-home.svg");
-    background-position: right 3% bottom 45%;
-    background-repeat: no-repeat;
-    background-size: 25px;
     outline-color: ${props => props.theme.colors.iconSidebar};
+
+    &::-webkit-search-cancel-button {
+        position: relative;
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        background-image: url("/cancel-input-search.svg");
+        cursor: pointer;
+    }
 `;
 
-export { ContainerSearch, Input };
+const ButtonSearch = styled.button`
+    background-image: url("/search-home.svg");
+    background-repeat: no-repeat;
+    background-size: 25px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 10px;
+    bottom: 4px;
+    cursor: pointer;
+`;
+
+export { ButtonSearch, ContainerSearch, Input, SearchItems };

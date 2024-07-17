@@ -35,6 +35,7 @@ export const theme = {
         backgroundGreen: "#22C7A9",
         backgroundGreenLight: "#D7EFE6",
         backgroundGray: "#F3F3F3",
+        backgroundSidebar: "#236969",
         buttonGray: "#DADADA",
         buttonGreen: "#2DB6A3",
         buttonPeach: "#DFB497",

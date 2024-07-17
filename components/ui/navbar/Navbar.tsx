@@ -23,7 +23,10 @@ export default function Navbar() {
     return (
         <Nav isOpen={isOpen}>
             <NavLogo isOpen={isOpen}>
-                <NavButtonLogo isOpen={isOpen}></NavButtonLogo>
+                <NavButtonLogo
+                    isOpen={isOpen}
+                    onClick={handleToggleNavbar}
+                ></NavButtonLogo>
                 <h1>Delivery APP</h1>
                 <NavButton
                     onClick={handleToggleNavbar}
@@ -42,10 +45,7 @@ export default function Navbar() {
                     <p>{customer ? customer.email : shopman?.email}</p>
                 </NavUserDetails>
             </NavUser>
-            <NavList
-                isOpen={isOpen}
-                onClick={handleToggleNavbar}
-            >
+            <NavList isOpen={isOpen}>
                 <li>
                     <Image
                         src="/home-navbar.svg"
