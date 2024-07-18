@@ -1,10 +1,11 @@
 import { createContext, useState } from "react";
 
-export const StoreContext = createContext({
+export const StoreContext = createContext<{
+    selectedStore: string;
+    setSelectStore: (value: string) => void;
+}>({
     selectedStore: "",
-    setSelectStore: (value: string) => {},
-    nameStore: "",
-    setNameStore: (value: string) => {},
+    setSelectStore: () => {},
 });
 
 interface ProviderProps {
@@ -13,15 +14,12 @@ interface ProviderProps {
 
 export function StoreContextProvider({ children }: ProviderProps) {
     const [selectedStore, setSelectStore] = useState("");
-    const [nameStore, setNameStore] = useState("");
 
     return (
         <StoreContext.Provider
             value={{
                 selectedStore,
                 setSelectStore,
-                nameStore,
-                setNameStore,
             }}
         >
             {children}

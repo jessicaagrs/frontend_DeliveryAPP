@@ -26,8 +26,9 @@ async function getStores(): Promise<AxiosResponse<StoreResponse[]>> {
     }
 }
 
-async function getStoreById(id: string, token: string): Promise<AxiosResponse<StoreResponse>> {
+async function getStoreById(id: string | undefined, token: string): Promise<AxiosResponse<StoreResponse>> {
     try {
+        if (!id) throw new Error(Messages.UNEXPECTED_ERROR);
         const response: AxiosResponse<StoreResponse> = await instance.get(`stores/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,

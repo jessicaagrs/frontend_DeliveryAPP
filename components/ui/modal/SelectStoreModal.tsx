@@ -1,13 +1,13 @@
 import { KeysStorage } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
-import useStoreData from "@/hooks/useStoreData";
 import { getStoreById } from "@/service/store/storeApi";
 import { ErrorApi } from "@/types/errorApiType";
 import { LoginResponse } from "@/types/loginType";
 import { useQueryClient } from "@tanstack/react-query";
 import SelectStore from "../selectStore/SelectStore";
 import { Container, Modal } from "./AlertModal.styles";
+import useStoreData from "@/hooks/useStoreData";
 
 interface ActionsModalProps {
     isOpen: boolean;
@@ -15,8 +15,8 @@ interface ActionsModalProps {
 }
 
 export const SelectStoreModal = ({ isOpen, closeModal }: ActionsModalProps) => {
-    const { selectedStore } = useStoreData();
     const { getLocalStorage, setLocalStorage } = useLocalStorage();
+    const { selectedStore } = useStoreData();
     const userStorage = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
     const queryClient = useQueryClient();
     const { showModal, AlertModalComponent } = useModal();

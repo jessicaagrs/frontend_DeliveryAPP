@@ -9,4 +9,12 @@ const GridArea = styled.section`
     gap: 2rem;
 `;
 
-export { GridArea };
+const Text = styled.p`
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: ${props => props.theme.colors.textGray};
+    text-align: center;
+`;
+
+export { GridArea, Text };
+
