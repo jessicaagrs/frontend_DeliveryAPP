@@ -6,10 +6,12 @@ interface NavbarProps {
 }
 
 const Nav = styled.nav<NavbarProps>`
+    position: fixed;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: ${props => (props.isOpen ? "30%" : "3.5%")};
+    width: ${props => (props.isOpen ? "18%" : "3.5%")};
     color: ${props => props.theme.colors.textWhite};
     background-color: ${props => props.theme.colors.backgroundSidebar};
     padding: 1rem 0 1.5rem 1rem;
@@ -20,7 +22,7 @@ const Nav = styled.nav<NavbarProps>`
 const NavLogo = styled.div<NavbarProps>`
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 45px;
 
     h1 {
         display: ${props => (props.isOpen ? "block" : "none")};
@@ -100,3 +102,4 @@ const NavList = styled.ul<NavbarProps>`
 `;
 
 export { Nav, NavButton, NavButtonLogo, NavList, NavLogo, NavUser, NavUserDetails };
+

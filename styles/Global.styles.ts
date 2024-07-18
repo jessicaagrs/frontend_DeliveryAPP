@@ -18,10 +18,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    overflow: hidden;
     background-color: ${props => props.theme.colors.background}; 
     display: ${props => props.theme.display};
-    height: 100vh;
+    overflow: ${props => props.theme.overflow};
+    height: 100%;
   }
 
   main {
@@ -44,6 +44,7 @@ export const theme = {
         textGray: "#464444",
         textLink: "#2D2626",
         textError: "#FF0000",
+        textCard: "#393939",
         icons: "#666666",
         iconSidebar: "#7C7C7A",
     },
@@ -59,6 +60,7 @@ export const customThemeLogin = {
         margin: "0 0 0 0",
     },
     display: "initial",
+    overflow: "hidden"
 };
 
 export const customThemeSystem = {
@@ -71,4 +73,5 @@ export const customThemeSystem = {
         margin: "0 20rem 0 20rem",
     },
     display: "flex",
+    overflow: "visible"
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import FilterProducts from "@/components/ui/home/filterProducts";
+import ProductsArea from "@/components/ui/home/productsArea";
 import SearchProducts from "@/components/ui/home/searchProducts";
 import { KeysStorage, TypeAcess } from "@/enum/enums";
 import useCustomerData from "@/hooks/useCustomerData";
@@ -63,6 +64,7 @@ export default function Home() {
         <main>
             <SearchProducts />
             <FilterProducts />
+            <ProductsArea/>
             <AlertModalComponent />
         </main>
     );
