@@ -1,7 +1,7 @@
 import { KeysStorage, Messages } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
-import useTypeAcess from "@/hooks/useTypeAcess";
+import useTypeAcessContext from "@/hooks/useTypeAcessContext";
 import loginSession from "@/service/login/loginApi";
 import { LoginRequest, LoginResponse } from "@/types/loginType";
 import { useMutation } from "@tanstack/react-query";
@@ -26,7 +26,7 @@ export const FormLogin = () => {
     const router = useRouter();
     const { AlertModalComponent, showModal } = useModal();
     const { setLocalStorage } = useLocalStorage();
-    const { typeAcessSelected } = useTypeAcess();
+    const { typeAcessSelected } = useTypeAcessContext();
 
     const handleClickViewPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();

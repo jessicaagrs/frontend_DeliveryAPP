@@ -1,8 +1,8 @@
 import { KeysStorage, TypeAcess } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
-import useShopmanData from "@/hooks/useShopmanData";
-import useTypeAcess from "@/hooks/useTypeAcess";
+import useShopmanContext from "@/hooks/useShopmanContext";
+import useTypeAcessContext from "@/hooks/useTypeAcessContext";
 import { getStoreById } from "@/service/store/storeApi";
 import { LoginResponse } from "@/types/loginType";
 import { StoreResponse } from "@/types/storeType";
@@ -11,8 +11,8 @@ import { useEffect } from "react";
 import { ButtonCart, CartIconItems, CartProducts, ContainerCartIcon } from "./cartArea.styles";
 
 export default function CartArea() {
-    const { shopman } = useShopmanData();
-    const { typeAcessSelected } = useTypeAcess();
+    const { shopman } = useShopmanContext();
+    const { typeAcessSelected } = useTypeAcessContext();
     const { getLocalStorage, setLocalStorage } = useLocalStorage();
     const dataLogin = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
     const storeData = getLocalStorage(KeysStorage.STORE) as StoreResponse;

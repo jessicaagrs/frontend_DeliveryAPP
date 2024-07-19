@@ -1,7 +1,7 @@
 import { KeysStorage } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
-import useStoreData from "@/hooks/useStoreData";
+import useStoreContext from "@/hooks/useStoreContext";
 import { getProducts } from "@/service/product/productApi";
 import { LoginResponse } from "@/types/loginType";
 import { ProductResponse } from "@/types/productType";
@@ -16,7 +16,7 @@ export default function ProductsArea() {
     const { AlertModalComponent, showModal } = useModal();
     const dataLogin = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
     const storeData = getLocalStorage(KeysStorage.STORE) as StoreResponse;
-    const { selectedStore, setSelectStore } = useStoreData();
+    const { selectedStore, setSelectStore } = useStoreContext();
 
     useEffect(() => {
         setSelectStore(storeData?.id);

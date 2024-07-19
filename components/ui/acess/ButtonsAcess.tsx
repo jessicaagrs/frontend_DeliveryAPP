@@ -1,14 +1,14 @@
 "use client";
 import { KeysStorage, TypeAcess } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import useTypeAcess from "@/hooks/useTypeAcess";
+import useTypeAcessContext from "@/hooks/useTypeAcessContext";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { ButtonsContainer } from "./ButtonAcess.styles";
 
 export const ButtonsAcess = () => {
     const route = useRouter();
-    const { setTypeAcessSelected } = useTypeAcess();
+    const { setTypeAcessSelected } = useTypeAcessContext();
     const { setLocalStorage } = useLocalStorage();
 
     const handleClick = useMemo(() => {

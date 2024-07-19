@@ -1,6 +1,6 @@
 import { ShopmanContext } from "@/contexts/ShopmanProvider";
 import { useContext } from "react";
 
-export default function useShopmanData() {
+export default function useShopmanContext() {
     return useContext(ShopmanContext);
 }

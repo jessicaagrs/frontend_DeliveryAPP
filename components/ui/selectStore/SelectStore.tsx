@@ -1,5 +1,5 @@
 import { Messages } from "@/enum/enums";
-import useStoreData from "@/hooks/useStoreData";
+import useStoreContext from "@/hooks/useStoreContext";
 import { getStores } from "@/service/store/storeApi";
 import { StoreResponse } from "@/types/storeType";
 import { clearStorageBrowser } from "@/utils/routers";
@@ -15,7 +15,7 @@ type SelectStoreProps = {
 export default function SelectStore({ isStoreRegistrationPossible }: SelectStoreProps) {
     const router = useRouter();
     const pathname = usePathname();
-    const { setSelectStore, selectedStore } = useStoreData();
+    const { setSelectStore, selectedStore } = useStoreContext();
     const { isPending, isError, data, error } = useQuery({
         queryKey: ["stores"],
         queryFn: getStores,

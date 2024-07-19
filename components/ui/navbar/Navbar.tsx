@@ -1,6 +1,6 @@
 "use client";
-import useCustomerData from "@/hooks/useCustomerData";
-import useShopmanData from "@/hooks/useShopmanData";
+import useCustomerContext from "@/hooks/useCustomerContext";
+import useShopmanContext from "@/hooks/useShopmanContext";
 import { clearStorageBrowser } from "@/utils/routers";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,8 +9,8 @@ import { Nav, NavButton, NavButtonLogo, NavList, NavLogo, NavUser, NavUserDetail
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const { customer } = useCustomerData();
-    const { shopman } = useShopmanData();
+    const { customer } = useCustomerContext();
+    const { shopman } = useShopmanContext();
 
     const handleToggleNavbar = () => {
         setIsOpen(isOpen => !isOpen);

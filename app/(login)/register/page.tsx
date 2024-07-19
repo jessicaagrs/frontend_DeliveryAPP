@@ -2,10 +2,10 @@
 import FormRegisterCustomer from "@/components/ui/register/FormRegisterCustomer";
 import FormRegisterShopman from "@/components/ui/register/FormRegisterShopman";
 import { TypeAcess } from "@/enum/enums";
-import useTypeAcess from "@/hooks/useTypeAcess";
+import useTypeAcessContext from "@/hooks/useTypeAcessContext";
 
 export default function Register() {
-    const { typeAcessSelected } = useTypeAcess();
+    const { typeAcessSelected } = useTypeAcessContext();
 
     return <main>{typeAcessSelected === TypeAcess.CUSTOMER ? <FormRegisterCustomer /> : <FormRegisterShopman />}</main>;
 }

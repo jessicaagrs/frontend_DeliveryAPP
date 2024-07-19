@@ -5,11 +5,11 @@ import FilterProducts from "@/components/ui/home/filterProducts";
 import ProductsArea from "@/components/ui/home/productsArea";
 import SearchProducts from "@/components/ui/home/searchProducts";
 import { KeysStorage, TypeAcess } from "@/enum/enums";
-import useCustomerData from "@/hooks/useCustomerData";
+import useCustomerContext from "@/hooks/useCustomerContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
-import useShopmanData from "@/hooks/useShopmanData";
-import useTypeAcess from "@/hooks/useTypeAcess";
+import useShopmanContext from "@/hooks/useShopmanContext";
+import useTypeAcessContext from "@/hooks/useTypeAcessContext";
 import { getCustomerById } from "@/service/customer/customerApi";
 import { getShopmanById } from "@/service/shopman/shopmanApi";
 import { ErrorApi } from "@/types/errorApiType";
@@ -23,9 +23,9 @@ export default function Home() {
     const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
     const queryClient = useQueryClient();
     const { showModal, AlertModalComponent } = useModal();
-    const { setCustomer } = useCustomerData();
-    const { setShopman } = useShopmanData();
-    const { setTypeAcessSelected } = useTypeAcess();
+    const { setCustomer } = useCustomerContext();
+    const { setShopman } = useShopmanContext();
+    const { setTypeAcessSelected } = useTypeAcessContext();
 
     const fetchUserData = async () => {
         if (typeAcess === TypeAcess.CUSTOMER) {

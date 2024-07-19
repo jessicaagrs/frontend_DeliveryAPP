@@ -1,6 +1,7 @@
 import { Messages } from "@/enum/enums";
 import { useModal } from "@/hooks/useModal";
-import useStoreData from "@/hooks/useStoreData";
+import useStoreContext from "@/hooks/useStoreContext";
+import { createShopman } from "@/service/shopman/shopmanApi";
 import { ShopmanRequest } from "@/types/shopmanType";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
@@ -8,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import SelectStore from "../selectStore/SelectStore";
 import { ButtonPreview, ButtonSubmit, ContainerButtonPreview, Form, FormItems, FormText, Input } from "./FormRegister.styles";
-import { createShopman } from "@/service/shopman/shopmanApi";
 
 export default function FormRegisterShopman() {
     const { AlertModalComponent, showModal } = useModal();
@@ -17,7 +17,7 @@ export default function FormRegisterShopman() {
     const inputEmailRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     const inputConfirmPasswordRef = useRef<HTMLInputElement>(null);
-    const { selectedStore } = useStoreData();
+    const { selectedStore } = useStoreContext();
 
     const setPreviewPageLogin = () => {
         router.push("/login");

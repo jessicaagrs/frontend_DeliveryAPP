@@ -1,5 +1,5 @@
 import Navbar from "@/components/ui/navbar/Navbar";
-import DefaultProviderSystem from "@/contexts/DefaultProviderSystem";
+import DefaultProviderSystem from "@/contexts/default/DefaultProviderSystem";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
