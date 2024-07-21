@@ -1,16 +1,50 @@
 "use client";
-import useCustomerContext from "@/hooks/useCustomerContext";
-import useShopmanContext from "@/hooks/useShopmanContext";
+import { KeysStorage, TypeAcess } from "@/enum/enums";
+import useCustomer from "@/hooks/useCustomer";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useModal } from "@/hooks/useModal";
+import useShopman from "@/hooks/useShopman";
+import { CustomerResponse } from "@/types/customerType";
+import { ErrorApi } from "@/types/errorApiType";
+import { ShopmanResponse } from "@/types/shopmanType";
 import { clearStorageBrowser } from "@/utils/routers";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Nav, NavButton, NavButtonLogo, NavList, NavLogo, NavUser, NavUserDetails } from "./Navbar.styles";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const { customer } = useCustomerContext();
-    const { shopman } = useShopmanContext();
+    const { getLocalStorage } = useLocalStorage();
+    const { fetchCustomer } = useCustomer();
+    const { fetchShopman } = useShopman();
+    const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
+    const { showModal, AlertModalComponent } = useModal();
+    const customerStorage = getLocalStorage(KeysStorage.CUSTOMER) as CustomerResponse;
+    const shopmanStorage = getLocalStorage(KeysStorage.SHOPMAN) as ShopmanResponse;
+
+    const fetchUserData = async () => {
+        if (typeAcess === TypeAcess.CUSTOMER) {
+            try {
+                await fetchCustomer();
+                return;
+            } catch (error: any) {
+                const errorResponse = error as ErrorApi;
+                showModal(errorResponse.message);
+            }
+        }
+
+        try {
+            await fetchShopman();
+        } catch (error: any) {
+            const errorResponse = error as ErrorApi;
+            showModal(errorResponse.message);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserData();
+    }, []);
 
     const handleToggleNavbar = () => {
         setIsOpen(isOpen => !isOpen);
@@ -41,8 +75,8 @@ export default function Navbar() {
                     alt="icone de usuário"
                 />
                 <NavUserDetails isOpen={isOpen}>
-                    <span>{customer ? customer.name : shopman?.name}</span>
-                    <p>{customer ? customer.email : shopman?.email}</p>
+                    <span>{customerStorage ? customerStorage.name : shopmanStorage?.name}</span>
+                    <p>{customerStorage ? customerStorage.email : shopmanStorage?.email}</p>
                 </NavUserDetails>
             </NavUser>
             <NavList isOpen={isOpen}>
@@ -124,6 +158,7 @@ export default function Navbar() {
                     </Link>
                 </li>
             </NavList>
+            <AlertModalComponent />
         </Nav>
     );
 }

@@ -1,11 +1,8 @@
 import { KeysStorage } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
-import useStoreContext from "@/hooks/useStoreContext";
-import { getStoreById } from "@/service/store/storeApi";
-import { ErrorApi } from "@/types/errorApiType";
 import { LoginResponse } from "@/types/loginType";
-import { useQueryClient } from "@tanstack/react-query";
+import { StoreResponse } from "@/types/storeType";
 import SelectStore from "../selectStore/SelectStore";
 import { Container, Modal } from "./AlertModal.styles";
 
@@ -15,26 +12,20 @@ interface ActionsModalProps {
 }
 
 export const SelectStoreModal = ({ isOpen, closeModal }: ActionsModalProps) => {
-    const { getLocalStorage, setLocalStorage } = useLocalStorage();
-    const { selectedStore } = useStoreContext();
-    const userStorage = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
-    const queryClient = useQueryClient();
+    const { getLocalStorage } = useLocalStorage();
+    const loginStorage = getLocalStorage(KeysStorage.LOGIN) as LoginResponse;
     const { showModal, AlertModalComponent } = useModal();
 
     const handleClickSaveStore = async () => {
-        if (!userStorage) return;
+        if (!loginStorage) return;
 
-        try {
-            const data = await queryClient.fetchQuery({
-                queryKey: ["storeById"],
-                queryFn: () => getStoreById(selectedStore, userStorage.token),
-            });
-            setLocalStorage(KeysStorage.STORE, data.data);
-            closeModal();
-        } catch (error: any) {
-            const errorResponse = error as ErrorApi;
-            showModal(errorResponse.message);
+        const storeStorage = getLocalStorage(KeysStorage.STORE) as StoreResponse;
+        if (!storeStorage) {
+            showModal("Selecione uma loja");
+            return;
         }
+
+        closeModal();
     };
 
     if (isOpen) {

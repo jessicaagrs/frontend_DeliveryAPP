@@ -1,7 +1,6 @@
 import { KeysStorage, Messages } from "@/enum/enums";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModal } from "@/hooks/useModal";
-import useTypeAcessContext from "@/hooks/useTypeAcessContext";
 import loginSession from "@/service/login/loginApi";
 import { LoginRequest, LoginResponse } from "@/types/loginType";
 import { useMutation } from "@tanstack/react-query";
@@ -25,8 +24,8 @@ export const FormLogin = () => {
     const [viewEye, setViewEye] = useState(false);
     const router = useRouter();
     const { AlertModalComponent, showModal } = useModal();
-    const { setLocalStorage } = useLocalStorage();
-    const { typeAcessSelected } = useTypeAcessContext();
+    const { setLocalStorage, getLocalStorage } = useLocalStorage();
+    const typeAcessStorage = getLocalStorage(KeysStorage.TYPEACESS) as string;
 
     const handleClickViewPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -64,7 +63,7 @@ export const FormLogin = () => {
             return;
         }
 
-        if (!typeAcessSelected) {
+        if (!typeAcessStorage) {
             showModal(Messages.UNEXPECTED_ERROR);
             return;
         }
@@ -72,7 +71,7 @@ export const FormLogin = () => {
         const dataUser: LoginRequest = {
             email: inputEmailRef.current?.value,
             password: inputPasswordRef.current?.value,
-            typeLogin: typeAcessSelected,
+            typeLogin: typeAcessStorage,
         };
 
         mutation.mutate(dataUser);

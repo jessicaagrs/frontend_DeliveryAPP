@@ -7,6 +7,7 @@ enum KeysStorage {
     LOGIN = "login",
     DELIVERY = "delivery",
     STORE = "store",
+    STOREID = "storeId",
     TYPEACESS = "typeAcess",
     CUSTOMER = "customer",
     SHOPMAN = "shopman",
@@ -28,4 +29,3 @@ enum Filter {
 }
 
 export { Filter, KeysStorage, Messages, TypeAcess };
-

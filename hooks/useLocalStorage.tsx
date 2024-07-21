@@ -25,9 +25,14 @@ export function useLocalStorage() {
         }
     }
 
+    function removeKeyStorage(key: KeysStorage) {
+        localStorage.removeItem(key);
+    }
+
     return {
         getLocalStorage,
         setLocalStorage,
         removeAllLocalStorage,
+        removeKeyStorage,
     };
 }

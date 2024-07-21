@@ -1,3 +1,4 @@
+import { Filter } from "@/enum/enums";
 import { ProductResponse } from "@/types/productType";
 import axios, { AxiosResponse } from "axios";
 import { handleApiError } from "../error/errorApi";
@@ -27,5 +28,30 @@ async function getProducts(
     }
 }
 
-export { getProducts };
+async function getProductsByFilter(
+    storeId: string,
+    take: number,
+    skip: number,
+    token: string,
+    filter: string
+): Promise<AxiosResponse<ProductResponse[]>> {
+    try {
+        if (filter === Filter.ALL) {
+            return getProducts(storeId, take, skip, token);
+        }
+        const response: AxiosResponse<ProductResponse[]> = await instance.get(
+            `products/paginator/${storeId}/${filter}/${take}/${skip}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return response;
+    } catch (error) {
+        return handleApiError(error);
+    }
+}
+
+export { getProducts, getProductsByFilter };
 

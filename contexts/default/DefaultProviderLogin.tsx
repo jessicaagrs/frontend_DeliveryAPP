@@ -2,8 +2,6 @@
 import { GlobalStyle, customThemeLogin } from "@/styles/Global.styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "styled-components";
-import { StoreContextProvider } from "../StoreProvider";
-import { TypeAcessContextProvider } from "../TypeAcessProvider";
 
 type DefaultProviderProps = {
     children: React.ReactNode;
@@ -15,9 +13,7 @@ export default function DefaultProviderLogin(props: DefaultProviderProps) {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={customThemeLogin}>
                 <GlobalStyle />
-                <StoreContextProvider>
-                    <TypeAcessContextProvider>{props.children}</TypeAcessContextProvider>
-                </StoreContextProvider>
+                {props.children}
             </ThemeProvider>
         </QueryClientProvider>
     );
