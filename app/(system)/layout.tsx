@@ -12,6 +12,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
     title: "Delivery APP",
     description: "Compre sua comida online",
+    icons: {
+        icon: "/favicon-system.ico",
+    },
 };
 
 export default function SystemLayout({
@@ -20,7 +23,10 @@ export default function SystemLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="pt-br" className={poppins.variable}>
+        <html
+            lang="pt-br"
+            className={poppins.variable}
+        >
             <body>
                 <DefaultProviderSystem>
                     <Navbar />

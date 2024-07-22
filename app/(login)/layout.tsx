@@ -11,6 +11,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
     title: "Acesso - Delivery APP",
     description: "Área de login do usuário ou criação da conta de acesso",
+    icons: {
+        icon: "/favicon-login.ico",
+    },
 };
 
 export default function LoginLayout({
@@ -19,7 +22,10 @@ export default function LoginLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="pt-br" className={poppins.variable}>
+        <html
+            lang="pt-br"
+            className={poppins.variable}
+        >
             <DefaultProviderLogin>
                 <body>{children}</body>
             </DefaultProviderLogin>
