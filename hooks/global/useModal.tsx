@@ -1,6 +1,6 @@
 import { SelectStoreModal } from "@/components/ui/modal/SelectStoreModal";
 import { useState } from "react";
-import AlertModal from "../components/ui/modal/AlertModal";
+import AlertModal from "../../components/ui/modal/AlertModal";
 
 export function useModal() {
     const [isOpen, setIsOpen] = useState(false);
@@ -26,12 +26,13 @@ export function useModal() {
 
     const SelectModalComponent = () => (
         <SelectStoreModal
-            isOpen={isOpen}
+            isOpenSelect={isOpen}
             closeModal={closeModal}
         />
     );
 
     return {
+        isOpen,
         showModal,
         closeModal,
         AlertModalComponent,

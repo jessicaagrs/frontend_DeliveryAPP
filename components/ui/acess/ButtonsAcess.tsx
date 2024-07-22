@@ -1,6 +1,6 @@
 "use client";
 import { KeysStorage, TypeAcess } from "@/enum/enums";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useLocalStorage } from "@/hooks/global/useLocalStorage";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { ButtonsContainer } from "./ButtonAcess.styles";

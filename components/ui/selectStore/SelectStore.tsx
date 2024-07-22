@@ -1,7 +1,6 @@
 import { KeysStorage, Messages } from "@/enum/enums";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import useStore from "@/hooks/useStore";
-import useStoreById from "@/hooks/useStoreById";
+import { useLocalStorage } from "@/hooks/global/useLocalStorage";
+import useStore from "@/hooks/store/useStore";
 import { StoreResponse } from "@/types/storeType";
 import { clearStorageBrowser } from "@/utils/routers";
 import { usePathname, useRouter } from "next/navigation";
@@ -9,14 +8,14 @@ import { ContainerSelect, Select } from "./SelectStore.styles";
 
 type SelectStoreProps = {
     isStoreRegistrationPossible: boolean;
+    onChange: (value: string) => void;
 };
 
-export default function SelectStore({ isStoreRegistrationPossible }: SelectStoreProps) {
+export default function SelectStore({ isStoreRegistrationPossible, onChange }: SelectStoreProps) {
     const router = useRouter();
     const pathname = usePathname();
     const { data, error, isError, isPending } = useStore();
-    const { fetchStoreById } = useStoreById();
-    const { setLocalStorage, removeKeyStorage } = useLocalStorage();
+    const { setLocalStorage } = useLocalStorage();
 
     const handleClickNewStore = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -25,12 +24,9 @@ export default function SelectStore({ isStoreRegistrationPossible }: SelectStore
 
     const handleChangeStore = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const storeId = event.target.value;
-        if (storeId === "0") {
-            removeKeyStorage(KeysStorage.STOREID);
-        }
-        
+
         if (pathname === "/home") {
-            fetchStoreById(storeId);
+            onChange(storeId);
         } else {
             setLocalStorage(KeysStorage.STOREID, storeId);
         }

@@ -1,9 +1,9 @@
 "use client";
 import { KeysStorage, TypeAcess } from "@/enum/enums";
-import useCustomer from "@/hooks/useCustomer";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useModal } from "@/hooks/useModal";
-import useShopman from "@/hooks/useShopman";
+import useCustomer from "@/hooks/customer/useCustomer";
+import { useLocalStorage } from "@/hooks/global/useLocalStorage";
+import { useModal } from "@/hooks/global/useModal";
+import useShopman from "@/hooks/shopman/useShopman";
 import { CustomerResponse } from "@/types/customerType";
 import { ErrorApi } from "@/types/errorApiType";
 import { ShopmanResponse } from "@/types/shopmanType";
@@ -14,12 +14,12 @@ import { useEffect, useState } from "react";
 import { Nav, NavButton, NavButtonLogo, NavList, NavLogo, NavUser, NavUserDetails } from "./Navbar.styles";
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
     const { getLocalStorage } = useLocalStorage();
     const { fetchCustomer } = useCustomer();
     const { fetchShopman } = useShopman();
     const typeAcess = getLocalStorage(KeysStorage.TYPEACESS) as string;
-    const { showModal, AlertModalComponent } = useModal();
+    const { showModal, AlertModalComponent, isOpen } = useModal();
     const customerStorage = getLocalStorage(KeysStorage.CUSTOMER) as CustomerResponse;
     const shopmanStorage = getLocalStorage(KeysStorage.SHOPMAN) as ShopmanResponse;
 
@@ -47,7 +47,7 @@ export default function Navbar() {
     }, []);
 
     const handleToggleNavbar = () => {
-        setIsOpen(isOpen => !isOpen);
+        setIsOpenMenu(isOpenMenu => !isOpenMenu);
     };
 
     const handleClickLogout = () => {
@@ -55,16 +55,16 @@ export default function Navbar() {
     };
 
     return (
-        <Nav isOpen={isOpen}>
-            <NavLogo isOpen={isOpen}>
+        <Nav isOpen={isOpenMenu}>
+            <NavLogo isOpen={isOpenMenu}>
                 <NavButtonLogo
-                    isOpen={isOpen}
+                    isOpen={isOpenMenu}
                     onClick={handleToggleNavbar}
                 ></NavButtonLogo>
                 <h1>Delivery APP</h1>
                 <NavButton
                     onClick={handleToggleNavbar}
-                    isOpen={isOpen}
+                    isOpen={isOpenMenu}
                 ></NavButton>
             </NavLogo>
             <NavUser>
@@ -74,12 +74,12 @@ export default function Navbar() {
                     height={34}
                     alt="icone de usuário"
                 />
-                <NavUserDetails isOpen={isOpen}>
+                <NavUserDetails isOpen={isOpenMenu}>
                     <span>{customerStorage ? customerStorage.name : shopmanStorage?.name}</span>
                     <p>{customerStorage ? customerStorage.email : shopmanStorage?.email}</p>
                 </NavUserDetails>
             </NavUser>
-            <NavList isOpen={isOpen}>
+            <NavList isOpen={isOpenMenu}>
                 <li>
                     <Image
                         src="/home-navbar.svg"
@@ -158,7 +158,7 @@ export default function Navbar() {
                     </Link>
                 </li>
             </NavList>
-            <AlertModalComponent />
+            {isOpen && <AlertModalComponent />}
         </Nav>
     );
 }

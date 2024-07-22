@@ -1,5 +1,5 @@
 import { Messages } from "@/enum/enums";
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "@/hooks/global/useModal";
 import { createStore } from "@/service/store/storeApi";
 import { StoreRequest } from "@/types/storeType";
 import { extractNumbers } from "@/utils/formatter";
@@ -18,7 +18,7 @@ import {
 } from "../register/FormRegister.styles";
 
 export default function FormNewStore() {
-    const { AlertModalComponent, showModal } = useModal();
+    const { AlertModalComponent, showModal, isOpen } = useModal();
     const inputCnpjRef = useRef<HTMLInputElement>(null);
     const inputCorporateReasonRef = useRef<HTMLInputElement>(null);
     const inputPhoneRef = useRef<HTMLInputElement>(null);
@@ -31,10 +31,10 @@ export default function FormNewStore() {
 
     const mutation = useMutation<AxiosResponse<string>, AxiosError, StoreRequest>({
         mutationFn: createStore,
-        onError: (error) => {
+        onError: error => {
             showModal(error.message);
         },
-        onSuccess: (data) => {
+        onSuccess: data => {
             setPreviewPageRegister();
         },
     });
@@ -71,16 +71,32 @@ export default function FormNewStore() {
                     <h1>Cadastro de Loja</h1>
                 </FormText>
                 <FormItems>
-                    <Input type="text" placeholder="CNPJ" ref={inputCnpjRef} />
-                    <Input type="text" placeholder="Razão Social" ref={inputCorporateReasonRef} />
-                    <Input type="tel" placeholder="Telefone" ref={inputPhoneRef} />
-                    <Input type="password" placeholder="Palavra Passe" ref={inputAcessPasswordRef} />
+                    <Input
+                        type="text"
+                        placeholder="CNPJ"
+                        ref={inputCnpjRef}
+                    />
+                    <Input
+                        type="text"
+                        placeholder="Razão Social"
+                        ref={inputCorporateReasonRef}
+                    />
+                    <Input
+                        type="tel"
+                        placeholder="Telefone"
+                        ref={inputPhoneRef}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Palavra Passe"
+                        ref={inputAcessPasswordRef}
+                    />
                 </FormItems>
-                <ButtonSubmit onClick={(event) => handleSubmit(event)}>
+                <ButtonSubmit onClick={event => handleSubmit(event)}>
                     {mutation.isPending ? "Enviando..." : "Cadastrar"}
                 </ButtonSubmit>
             </Form>
-            <AlertModalComponent />
+            {isOpen && <AlertModalComponent />}
         </>
     );
 }

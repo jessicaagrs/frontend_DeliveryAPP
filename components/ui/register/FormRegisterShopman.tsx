@@ -1,12 +1,11 @@
-import { KeysStorage, Messages } from "@/enum/enums";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useModal } from "@/hooks/useModal";
+import { Messages } from "@/enum/enums";
+import { useModal } from "@/hooks/global/useModal";
 import { createShopman } from "@/service/shopman/shopmanApi";
 import { ShopmanRequest } from "@/types/shopmanType";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import SelectStore from "../selectStore/SelectStore";
 import {
     ButtonPreview,
@@ -19,13 +18,17 @@ import {
 } from "./FormRegister.styles";
 
 export default function FormRegisterShopman() {
-    const { AlertModalComponent, showModal } = useModal();
-    const { getLocalStorage } = useLocalStorage();
+    const { AlertModalComponent, showModal, isOpen } = useModal();
     const router = useRouter();
     const inputNameRef = useRef<HTMLInputElement>(null);
     const inputEmailRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     const inputConfirmPasswordRef = useRef<HTMLInputElement>(null);
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+    const handleSelectChange = (option: string) => {
+        setSelectedOption(option);
+    };
 
     const setPreviewPageLogin = () => {
         router.push("/login");
@@ -58,14 +61,12 @@ export default function FormRegisterShopman() {
             return;
         }
 
-        const storeIdStorage = getLocalStorage(KeysStorage.STOREID) as string;
-
         const shopman: ShopmanRequest = {
             name: inputNameRef.current?.value,
             email: inputEmailRef.current?.value,
             password: inputPasswordRef.current?.value,
             role: "Admin",
-            storeId: storeIdStorage,
+            storeId: selectedOption as string,
         };
 
         mutation.mutate(shopman);
@@ -85,7 +86,10 @@ export default function FormRegisterShopman() {
                     </p>
                 </FormText>
                 <FormItems>
-                    <SelectStore isStoreRegistrationPossible={true} />
+                    <SelectStore
+                        isStoreRegistrationPossible={true}
+                        onChange={handleSelectChange}
+                    />
                     <Input
                         type="text"
                         placeholder="Nome Completo"
@@ -111,7 +115,7 @@ export default function FormRegisterShopman() {
                     {mutation.isPending ? "Enviando..." : "Cadastrar"}
                 </ButtonSubmit>
             </Form>
-            <AlertModalComponent />
+            {isOpen && <AlertModalComponent />}
         </>
     );
 }

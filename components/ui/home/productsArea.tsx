@@ -1,12 +1,12 @@
-import useFilterProducts from "@/hooks/useFilterProducts";
+import { useModal } from "@/hooks/global/useModal";
+import useFilterProducts from "@/hooks/product/useFilterProducts";
 import { ProductResponse } from "@/types/productType";
 import { ProductCard } from "./productCard";
 import { GridArea, Text } from "./productsArea.styles";
-import { useModal } from "@/hooks/useModal";
 
 export default function ProductsArea() {
     const { data, error, isError, isPending } = useFilterProducts();
-    const { showModal, AlertModalComponent } = useModal();
+    const { showModal, AlertModalComponent, isOpen } = useModal();
 
     if (isPending) {
         return (
@@ -36,7 +36,7 @@ export default function ProductsArea() {
                     {...product}
                 />
             ))}
-            <AlertModalComponent />
+            {isOpen && <AlertModalComponent />}
         </GridArea>
     );
 }

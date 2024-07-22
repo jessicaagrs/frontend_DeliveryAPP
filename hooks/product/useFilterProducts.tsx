@@ -4,8 +4,8 @@ import { LoginResponse } from "@/types/loginType";
 import { StoreResponse } from "@/types/storeType";
 import { useQuery } from "@tanstack/react-query";
 import { useDeferredValue } from "react";
+import { useLocalStorage } from "../global/useLocalStorage";
 import useFilterContext from "./useFilterContext";
-import { useLocalStorage } from "./useLocalStorage";
 
 const setSearchValue = (search: string, type: Filter) => {
     if (search !== "" && type === Filter.ALL) return search;

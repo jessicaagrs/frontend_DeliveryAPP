@@ -1,5 +1,5 @@
 import { Messages } from "@/enum/enums";
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "@/hooks/global/useModal";
 import { createCustomer } from "@/service/customer/customerApi";
 import { CustomerRequest } from "@/types/customerType";
 import { extractNumbers } from "@/utils/formatter";
@@ -18,7 +18,7 @@ import {
 } from "./FormRegister.styles";
 
 export default function FormRegisterCustomer() {
-    const { AlertModalComponent, showModal } = useModal();
+    const { AlertModalComponent, showModal, isOpen } = useModal();
     const router = useRouter();
     const inputNameRef = useRef<HTMLInputElement>(null);
     const inputEmailRef = useRef<HTMLInputElement>(null);
@@ -108,7 +108,7 @@ export default function FormRegisterCustomer() {
                     {mutation.isPending ? "Enviando..." : "Cadastrar"}
                 </ButtonSubmit>
             </Form>
-            <AlertModalComponent />
+            {isOpen && <AlertModalComponent />}
         </>
     );
 }

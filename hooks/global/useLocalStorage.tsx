@@ -1,4 +1,4 @@
-import { KeysStorage } from "../enum/enums";
+import { KeysStorage } from "../../enum/enums";
 
 export function useLocalStorage() {
     function getLocalStorage<T>(key: KeysStorage): T | T[] | null {

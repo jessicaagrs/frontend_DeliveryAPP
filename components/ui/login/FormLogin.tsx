@@ -1,6 +1,6 @@
 import { KeysStorage, Messages } from "@/enum/enums";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useModal } from "@/hooks/useModal";
+import { useLocalStorage } from "@/hooks/global/useLocalStorage";
+import { useModal } from "@/hooks/global/useModal";
 import loginSession from "@/service/login/loginApi";
 import { LoginRequest, LoginResponse } from "@/types/loginType";
 import { useMutation } from "@tanstack/react-query";
@@ -23,7 +23,7 @@ export const FormLogin = () => {
     const buttonEyePasswordRef = useRef<HTMLButtonElement>(null);
     const [viewEye, setViewEye] = useState(false);
     const router = useRouter();
-    const { AlertModalComponent, showModal } = useModal();
+    const { AlertModalComponent, showModal, isOpen } = useModal();
     const { setLocalStorage, getLocalStorage } = useLocalStorage();
     const typeAcessStorage = getLocalStorage(KeysStorage.TYPEACESS) as string;
 
@@ -119,7 +119,7 @@ export const FormLogin = () => {
             <ButtonLogin onClick={event => handleSubmit(event)}>
                 {mutation.isPending ? "Enviando..." : "Entrar"}
             </ButtonLogin>
-            <AlertModalComponent />
+            {isOpen && <AlertModalComponent />}
         </ContainerForm>
     );
 };
