@@ -2,7 +2,7 @@ import { KeysStorage } from "@/enum/enums";
 import { getShopmanById } from "@/service/shopman/shopmanApi";
 import { LoginResponse } from "@/types/loginType";
 import { useQueryClient } from "@tanstack/react-query";
-import { useLocalStorage } from "./useLocalStorage";
+import { useLocalStorage } from "../global/useLocalStorage";
 
 export default function useShopman() {
     const queryClient = useQueryClient();
