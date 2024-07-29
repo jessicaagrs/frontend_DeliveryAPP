@@ -4,6 +4,7 @@ const ContainerCartIcon = styled.section`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     gap: 40px;
     margin: 20px 0 20px 0;
 
@@ -12,12 +13,24 @@ const ContainerCartIcon = styled.section`
         font-weight: var(--font-weight-semibold);
         color: ${props => props.theme.colors.textInputGray};
     }
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        margin: 20px 5px 20px 0;
+
+        h1 {
+            font-size: 1rem;
+        }
+    }
 `;
 
 const CartIconItems = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        margin-right: 20px;
+    }
 `;
 
 const ButtonCart = styled.button`
@@ -42,3 +55,4 @@ const CartProducts = styled.div`
 `;
 
 export { ButtonCart, CartIconItems, CartProducts, ContainerCartIcon };
+

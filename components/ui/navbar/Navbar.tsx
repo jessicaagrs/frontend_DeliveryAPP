@@ -63,11 +63,12 @@ export default function Navbar() {
                 ></NavButtonLogo>
                 <h1>Delivery APP</h1>
                 <NavButton
+                    id="menu-navbar"
                     onClick={handleToggleNavbar}
                     isOpen={isOpenMenu}
                 ></NavButton>
             </NavLogo>
-            <NavUser>
+            <NavUser isOpen={isOpenMenu}>
                 <Image
                     src="/user-navbar.svg"
                     width={34}

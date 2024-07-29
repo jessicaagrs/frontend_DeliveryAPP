@@ -17,6 +17,19 @@ const Nav = styled.nav<NavbarProps>`
     padding: 1rem 0 1.5rem 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     animation: ${props => (props.isOpen ? SlideInLeft : "none")} 1s ease 0s 1 normal none;
+    z-index: 1;
+
+    @media (min-width: 320px) and (max-width: 600px) {
+        width: ${props => (props.isOpen ? "75%" : "15%")};
+        background-color: ${props => (props.isOpen ? props.theme.colors.backgroundSidebar : "transparent")};
+        box-shadow: none;
+    }
+
+    @media (min-width: 601px) and (max-width: 1280px) {
+        width: ${props => (props.isOpen ? "50%" : "7.5%")};
+        background-color: ${props => (props.isOpen ? props.theme.colors.backgroundSidebar : "transparent")};
+        box-shadow: none;
+    }
 `;
 
 const NavLogo = styled.div<NavbarProps>`
@@ -28,6 +41,16 @@ const NavLogo = styled.div<NavbarProps>`
         display: ${props => (props.isOpen ? "block" : "none")};
         font-size: 1.3rem;
         font-weight: var(--font-weight-semibold);
+    }
+
+    @media (min-width: 320px) and (max-width: 600px) {
+        justify-content: space-between;
+        font-size: 1rem;
+        gap: 30px;
+    }
+
+    @media (min-width: 601px) and (max-width: 1280px) {
+        justify-content: space-between;
     }
 `;
 
@@ -41,6 +64,11 @@ const NavButton = styled.button<NavbarProps>`
     width: 34px;
     height: 34px;
     cursor: pointer;
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        background-image: ${props => (props.isOpen ? "url('/close-navbar.svg')" : "url('/menu-mobile.svg')")};
+        background-size: ${props => (props.isOpen ? "28px" : "34px")};
+    }
 `;
 
 const NavButtonLogo = styled(NavButton)<NavbarProps>`
@@ -48,9 +76,13 @@ const NavButtonLogo = styled(NavButton)<NavbarProps>`
     display: ${props => (props.isOpen ? "block" : "none")};
 `;
 
-const NavUser = styled.div`
+const NavUser = styled.div<NavbarProps>`
     display: flex;
     gap: 20px;
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        display: ${props => (props.isOpen ? "flex" : "none")};
+    }
 `;
 
 const NavUserDetails = styled.div<NavbarProps>`
@@ -69,12 +101,26 @@ const NavUserDetails = styled.div<NavbarProps>`
         font-weight: var(--font-weight-regular);
         display: ${props => (props.isOpen ? "block" : "none")};
     }
+
+    @media (min-width: 320px) and (max-width: 600px) {
+        span {
+            font-size: 0.8rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+        }
+    }
 `;
 
 const NavList = styled.ul<NavbarProps>`
     display: flex;
     flex-direction: column;
     gap: 40px;
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        display: ${props => (props.isOpen ? "flex" : "none")};
+    }
 
     li {
         list-style: none;
@@ -94,6 +140,12 @@ const NavList = styled.ul<NavbarProps>`
                 text-decoration: underline;
             }
         }
+
+        @media (min-width: 320px) and (max-width: 600px) {
+            a {
+                font-size: 0.8rem;
+            }
+        }
     }
 
     li:last-child {
@@ -102,4 +154,3 @@ const NavList = styled.ul<NavbarProps>`
 `;
 
 export { Nav, NavButton, NavButtonLogo, NavList, NavLogo, NavUser, NavUserDetails };
-

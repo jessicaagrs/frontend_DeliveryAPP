@@ -28,6 +28,12 @@ export const GlobalStyle = createGlobalStyle`
     margin: ${props => props.theme.spacing.margin};
     width: 100%;
   }
+
+  @media (min-width: 320px) and (max-width: 1280px) {
+    main {
+      margin: ${props => props.theme.spacing.marginMobile};
+    }
+  }
 `;
 
 export const theme = {
@@ -60,7 +66,7 @@ export const customThemeLogin = {
         margin: "0 0 0 0",
     },
     display: "initial",
-    overflow: "hidden"
+    overflow: "hidden",
 };
 
 export const customThemeSystem = {
@@ -71,7 +77,8 @@ export const customThemeSystem = {
     },
     spacing: {
         margin: "0 20rem 0 20rem",
+        marginMobile: "0",
     },
     display: "flex",
-    overflow: "visible"
+    overflow: "visible",
 };

@@ -11,6 +11,10 @@ const ContainerSearch = styled.div`
 const SearchItems = styled.div`
     width: 500px;
     position: relative;
+
+    @media (min-width: 320px) and (max-width: 600px) {
+        width: 300px;
+    }
 `;
 
 const Input = styled.input`
@@ -40,6 +44,10 @@ const Input = styled.input`
         background-image: url("/cancel-input-search.svg");
         cursor: pointer;
     }
+
+    @media (min-width: 320px) and (max-width: 600px) {
+        width: 300px;
+    }
 `;
 
 interface ButtonSearchProps {
@@ -58,7 +66,7 @@ const ButtonSearch = styled.button<ButtonSearchProps>`
     right: 10px;
     bottom: 4px;
     cursor: pointer;
-    display: ${props => (props.isVisible? "block" : "none")};
+    display: ${props => (props.isVisible ? "block" : "none")};
 `;
 
 export { ButtonSearch, ContainerSearch, Input, SearchItems };
