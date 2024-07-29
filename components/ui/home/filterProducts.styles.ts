@@ -11,6 +11,10 @@ const ContainerFilter = styled.div`
     @media (min-width: 320px) and (max-width: 600px) {
         gap: 20px;
     }
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        margin: 2rem 1rem 0 1rem;
+    }
 `;
 
 interface ButtonFilterProps {
@@ -38,6 +42,11 @@ const ButtonFilter = styled.button<ButtonFilterProps>`
     @media (min-width: 320px) and (max-width: 600px) {
         font-size: 14px;
     }
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        width: 85px;
+    }
 `;
 
 export { ButtonFilter, ContainerFilter };
+

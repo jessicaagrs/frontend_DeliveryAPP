@@ -9,6 +9,10 @@ const Card = styled.div`
     padding: 1rem;
     border-radius: 15px;
     gap: 1rem;
+
+    @media (min-width: 320px) and (max-width: 1280px) {
+        width: 90%;
+    }
 `;
 
 const CardText = styled.div`

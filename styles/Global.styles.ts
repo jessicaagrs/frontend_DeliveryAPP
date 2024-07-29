@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.theme.colors.background}; 
     display: ${props => props.theme.display};
     overflow: ${props => props.theme.overflow};
+    overflow-x: hidden;
     height: 100%;
   }
 

@@ -7,6 +7,11 @@ const GridArea = styled.section`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
+
+     @media (min-width: 320px) and (max-width: 1280px) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 `;
 
 const Text = styled.p`
