@@ -40,7 +40,7 @@ async function getProductsByFilter(
             return getProducts(storeId, take, skip, token);
         }
         const response: AxiosResponse<ProductResponse[]> = await instance.get(
-            `products/paginator/${storeId}/${filter}/${take}/${skip}`,
+            `products/paginator/filter/${storeId}/${filter}/${take}/${skip}`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -54,4 +54,3 @@ async function getProductsByFilter(
 }
 
 export { getProducts, getProductsByFilter };
-

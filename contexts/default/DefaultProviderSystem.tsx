@@ -2,6 +2,7 @@
 import { customThemeSystem, GlobalStyle } from "@/styles/Global.styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "styled-components";
+import { FilterProductsContextProvider } from "../FilterProductsProvider";
 
 type DefaultProviderProps = {
     children: React.ReactNode;
@@ -13,7 +14,7 @@ export default function DefaultProviderSystem(props: DefaultProviderProps) {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={customThemeSystem}>
                 <GlobalStyle />
-                {props.children}
+                <FilterProductsContextProvider>{props.children}</FilterProductsContextProvider>
             </ThemeProvider>
         </QueryClientProvider>
     );

@@ -1,30 +1,32 @@
 import { Filter } from "@/enum/enums";
-import { useState } from "react";
+import useFilterContext from "@/hooks/product/useFilterContext";
 import { ButtonFilter, ContainerFilter } from "./filterProducts.styles";
 
 export default function FilterProducts() {
-    const [activeFilter, setActiveFilter] = useState(Filter.ALL);
+    const { setType, type } = useFilterContext();
 
     const handleClickFilter = (filter: Filter) => {
-        setActiveFilter(filter);
+        if (type !== filter) {
+            setType(filter);
+        }
     };
 
     return (
         <ContainerFilter>
             <ButtonFilter
-                isSelected={activeFilter === Filter.ALL}
+                isSelected={type === Filter.ALL}
                 onClick={() => handleClickFilter(Filter.ALL)}
             >
                 Todos
             </ButtonFilter>
             <ButtonFilter
-                isSelected={activeFilter === Filter.FOODS}
+                isSelected={type === Filter.FOODS}
                 onClick={() => handleClickFilter(Filter.FOODS)}
             >
                 Refeições
             </ButtonFilter>
             <ButtonFilter
-                isSelected={activeFilter === Filter.DRINKS}
+                isSelected={type === Filter.DRINKS}
                 onClick={() => handleClickFilter(Filter.DRINKS)}
             >
                 Bebidas
