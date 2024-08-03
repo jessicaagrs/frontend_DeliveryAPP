@@ -49,10 +49,12 @@ const CartProducts = styled.div`
     height: 15px;
     border-radius: 50%;
     background-color: ${props => props.theme.colors.textError};
+    color: ${props => props.theme.colors.textWhite};
+    font-size: 0.6rem;
+    text-align: center;
     position: absolute;
     left: 20px;
     bottom: 20px;
 `;
 
 export { ButtonCart, CartIconItems, CartProducts, ContainerCartIcon };
-

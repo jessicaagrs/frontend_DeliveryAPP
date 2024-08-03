@@ -11,6 +11,7 @@ enum KeysStorage {
     TYPEACESS = "typeAcess",
     CUSTOMER = "customer",
     SHOPMAN = "shopman",
+    CART = "cart",
 }
 
 enum Messages {
