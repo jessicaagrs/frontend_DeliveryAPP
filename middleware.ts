@@ -6,7 +6,10 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
 
     const publicPaths = ["/login", "/register", "/newStore", "/"];
-    const privatePaths = ["/home", "/orders"];
+    const privatePaths = ["/home", "/orders", "/product"];
+
+    const basePath = url.pathname.split("/")[1];
+    const mainPath = `/${basePath}`;
 
     const staticFileExtensions = [
         ".css",
@@ -30,21 +33,23 @@ export function middleware(request: NextRequest) {
     }
 
     if (!typeAcessCookie) {
-        if (url.pathname !== "/") {
+        if (mainPath !== "/") {
             return NextResponse.redirect(new URL("/", request.url));
         }
         return NextResponse.next();
     }
 
     if (!userCookie && typeAcessCookie) {
-        if (!publicPaths.includes(url.pathname)) {
+        if (!publicPaths.includes(mainPath)) {
             return NextResponse.redirect(new URL("/", request.url));
         }
         return NextResponse.next();
     }
 
     if (userCookie && typeAcessCookie) {
-        if (!privatePaths.includes(url.pathname)) {
+        console.log(mainPath);
+
+        if (!privatePaths.includes(mainPath)) {
             return NextResponse.redirect(new URL("/home", request.url));
         }
         return NextResponse.next();
@@ -54,5 +59,13 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/login/:path*", "/register/:path*", "/newStore/:path*", "/home/:path*", "/orders/:path*", "/:path*"],
+    matcher: [
+        "/login/:path*",
+        "/register/:path*",
+        "/newStore/:path*",
+        "/home/:path*",
+        "/orders/:path*",
+        "/product/:path*",
+        "/:path*",
+    ],
 };
